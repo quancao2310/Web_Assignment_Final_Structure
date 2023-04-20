@@ -140,7 +140,7 @@
       $("#main-search-button").children().click((event) => {
         $("#search2").val(event.target.innerHTML);
       });
-      $.post("index_data.php", function(data) {
+      $.post("home/index_data.php", function(data) {
         let arrays = JSON.parse(data);
         for (let i = 0; i < 2; i++) {
           let array = arrays[i];
