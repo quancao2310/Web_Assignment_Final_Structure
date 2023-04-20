@@ -4,6 +4,9 @@ include_once '../include/header.php';
 
 ?>
 
+<?php
+  if (!isset($_SESSION['id'])) {
+?>
   <div class="content">
     <div class="wrapper register-box">
       <div class="form-box register-form">
@@ -73,6 +76,11 @@ include_once '../include/header.php';
       </div>
     </div>
   </div>
+
+  <?php
+    } 
+  ?>
+
 
 <?php
 
