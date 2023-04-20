@@ -1,0 +1,34 @@
+/* header */
+.navbar-brand img {
+    height: 70px;
+}
+
+.nav-item:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 992px) {
+    #search-form {
+        width: 100%;
+    }
+}
+
+#search1 {
+    padding-left: 16px;
+    border-radius: 50px 0 0 50px;
+}
+
+.search-icon {
+    padding: 1px 20px;
+    border-radius: 0 50px 50px 0;
+}
+
+/* footer */
+.hover-gold:hover {
+    color: gold!important;
+}
+
+#cp-write {
+    background-color: rgba(0, 0, 0, 0.05);
+}

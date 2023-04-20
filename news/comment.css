@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+.comment-block {
+    color: #585757;
+    width: 100%;
+    display: grid;
+    gap: 20px;
+}
+
+.main-comment {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+}
+
+.comment-avatar {
+    height: 48px;
+    width: 48px;
+}
+
+.comment-avatar img {
+    max-width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 999px;
+    object-fit: cover;
+}
+
+.subcomment {
+    display: flex;
+}
+
+.subcomment .icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subcomment .other-comments {
+    flex: 1;
+    display: grid;
+    gap: 20px;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+}

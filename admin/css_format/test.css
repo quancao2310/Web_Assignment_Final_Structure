@@ -1,0 +1,13 @@
+.navbar-brand img {
+    height: 70px;
+}
+.nav-item:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+.search:hover{
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}

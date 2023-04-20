@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>QN2H - Web Programming Assignment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="modules/header-footer.css" rel="stylesheet">
+  <link href="home/home.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+  <div class="main">
+    <div class="img-main">
+      <a href="/btl/">
+        <img src="https://file.hstatic.net/200000260587/file/z3589616546381_ea3c6107065aeb46bdd6d1f95612b490_cc2236f53fe5440d9f68a4a9cc48f574.jpg" alt="Sản phẩm nổi bật">
+      </a>
+    </div>
+    <div class="container-xl my-5">
+      <div class="row">
+        <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mb-3">
+          Trải nghiệm những bộ trang phục hiện đại
+        </div>
+        <div class="col-12 mb-5">
+          <form class="row my-4" id="main-search" role="search">
+            <div class="col-10 offset-1 col-lg-8 offset-lg-2 d-flex mb-3" id="main-search-bar">
+              <input class="form-control" name="search" id="search2" type="search" placeholder="Hãy bắt đầu với một mặt hàng" aria-label="Search">
+              <button type="submit" class="btn d-flex justify-content-center align-items-center search-icon" title="Search button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
+            </div>
+            <div class="col-12 d-flex justify-content-center flex-wrap gap-2" id="main-search-button">
+              <button type="button" class="btn btn-outline-secondary">áo thun</button>
+              <button type="button" class="btn btn-outline-secondary">polo</button>
+              <button type="button" class="btn btn-outline-secondary">tee</button>
+              <button type="button" class="btn btn-outline-secondary">áo khoác</button>
+              <button type="button" class="btn btn-outline-secondary">áo sơ mi</button>
+              <button type="button" class="btn btn-outline-secondary">quần đùi</button>
+              <button type="button" class="btn btn-outline-secondary">jeans</button>
+              <button type="button" class="btn btn-outline-secondary">kaki</button>
+              <button type="button" class="btn btn-outline-secondary">backpack</button>
+              <button type="button" class="btn btn-outline-secondary">túi</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mt-5 mb-3">
+          Bán chạy nhất
+        </div>
+        <div class="col-10 offset-1 mb-5">
+          <div class="row" id="best-seller">
+          
+          </div>
+        </div>
+        <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mt-5 mb-3">
+          Quần áo mới
+        </div>
+        <div class="col-10 offset-1 mb-5">
+          <div class="row" id="latest-products">
+          
+          </div>
+        </div>
+        <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mt-5 mb-3">
+          Tại QN2H, chúng tôi tự hào về chất lượng dịch vụ
+        </div>
+        <div class="col-12 mb-5">
+          <div class="row justify-content-center gap-2">
+            <div class="col-10 col-lg-5 col-xl p-4 service-card">
+              <div class="text-warning p-2 border border-2 border-danger bg-danger rounded-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
+                </svg>
+              </div>
+              <div class="text-uppercase fw-semibold fs-6">
+                Miễn phí vận chuyển cho đơn hàng trên 500k
+              </div>
+            </div>
+            <div class="col-10 col-lg-5 col-xl p-4 service-card">
+              <div class="text-warning p-2 border border-2 border-danger bg-danger rounded-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+                  <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                </svg>
+              </div>
+              <div class="text-uppercase fw-semibold fs-6">
+                Đổi trả miễn phí trong 30 ngày
+              </div>
+            </div>
+            <div class="col-10 col-lg-5 col-xl p-4 service-card">
+              <div class="text-warning p-2 border border-2 border-danger bg-danger rounded-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-tag-fill" viewBox="0 0 16 16">
+                  <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                </svg>
+              </div>
+              <div class="text-uppercase fw-semibold fs-6">
+                Hoàn tiền trong 24h
+              </div>
+            </div>
+            <div class="col-10 col-lg-5 col-xl p-4 service-card">
+              <div class="text-warning p-2 border border-2 border-danger bg-danger rounded-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+              </div>
+              <div class="text-uppercase fw-semibold fs-6">
+                Hàng Việt Nam chất lượng cao
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 my-5 img-main">
+          <img src="https://i.pinimg.com/originals/d2/4d/b1/d24db1a9fef2d0f797f3bb30a9d3a907.jpg" alt="Male's fashion">
+        </div>
+        <div class="my-5"></div>
+        <div class="col-12 my-5 d-flex justify-content-center">
+          <img src="images/logo.png" alt="QN2H">
+        </div>
+        <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mb-3">
+          Hãy tham gia ngay hôm nay 
+          <br>
+          để nhận được ưu đãi vô cùng hấp dẫn
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <a role="button" href="account/page/register.php" class="btn btn-primary" id="main-subscribe-btn">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      $.get("modules/header.php", function(data) {
+        $("body").prepend(data);
+      });
+      $.get("modules/footer.php", function(data) {
+        $("body").append(data);
+      });
+      $("#main-search-button").children().click((event) => {
+        $("#search2").val(event.target.innerHTML);
+      });
+      $.post("index_data.php", function(data) {
+        let arrays = JSON.parse(data);
+        for (let i = 0; i < 2; i++) {
+          let array = arrays[i];
+          for (let item of array) {
+            let product =
+            "<div class='col-12 col-sm-6 col-lg-4 mb-3'> \
+              <div class='card text-center'> \
+                <div class='img-container'> \
+                  <a href='#'> \
+                    <img src='" + item['image_1'] + "' alt='" + item['product_name'] + "' class='card-img-top'> \
+                  </a> \
+                </div> \
+                <div class='card-body pt-2'> \
+                  <h5 class='card-title'> \
+                    <a href='#' class='text-reset text-decoration-none fw-bold'>" + item['product_name'] + "</a> \
+                  </h5> \
+                  <p class='card-text mb-2'>" + item['product_price'] + " &#8363;</p> \
+                </div> \
+              </div> \
+            </div>";
+            if (i == 0) $("#best-seller").append(product);
+            else $("#latest-products").append(product);
+          }
+        }
+      });
+    })
+  </script>
+</body>
+</html>
