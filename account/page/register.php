@@ -67,7 +67,7 @@ include_once '../include/header.php';
               } else if ($_GET['error'] == 'stmtfailed') {
                 echo '<p class="error-msg">Something wrong!</p>';
               } else {
-                echo '<p>User has been created!</p>';
+                header('location: /btl/');
               }
             }
 
