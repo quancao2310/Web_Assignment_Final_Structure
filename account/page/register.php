@@ -10,7 +10,7 @@ include_once '../include/header.php';
   <div class="content">
     <div class="wrapper register-box">
       <div class="form-box register-form">
-        <h2>Registration</h2>
+        <h2>Đăng kí</h2>
         <?php
           if (isset($error)) {
             foreach($error as $error) {
@@ -23,7 +23,7 @@ include_once '../include/header.php';
             <span class="icon">
               <ion-icon name="person"></ion-icon>
             </span>
-            <input type="text" name="username" id="username" placeholder="Username" autofocus>
+            <input type="text" name="username" id="username" placeholder="Tên đăng nhập" autofocus>
           </div>
           <div class="input-box">
             <span class="icon">
@@ -35,17 +35,17 @@ include_once '../include/header.php';
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="password" name="password" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Mật khẩu">
           </div>
           <div class="input-box">
             <span class="icon">
               <ion-icon name="lock-closed"></ion-icon>
             </span>
-            <input type="password" name="r-password" id="r-password" placeholder="Confirm password">
+            <input type="password" name="r-password" id="r-password" placeholder="Xác nhận mật khẩu">
           </div>
-          <button type="submit" class="btn" name="register">Register</button>
+          <button type="submit" class="btn" name="register">Đăng kí</button>
           <div class="login-register">
-            <p>Already have a account? <a href="login.php" class="login-link">Login</a></p>
+            <p>Đã có tài khoản? <a href="login.php" class="login-link">Đăng nhập</a></p>
           </div>
         </form>
         <div class="error">
@@ -67,7 +67,7 @@ include_once '../include/header.php';
               } else if ($_GET['error'] == 'stmtfailed') {
                 echo '<p class="error-msg">Something wrong!</p>';
               } else {
-                header('location: /btl/');
+                header('location: /btl/account/page/login.php');
               }
             }
 

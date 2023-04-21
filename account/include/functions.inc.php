@@ -91,14 +91,14 @@ function emptyInputLogin($username, $password) {
     return $result;
 }
 function checkedUid($conn, $username) {
-    $sql = 'SELECT * FROM account_info WHERE username = $username OR email = $username;';
+    $sql = 'SELECT * FROM account_info WHERE username = ? OR email = ?;';
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header('location: ../page/login.php?error=stmtfailed');
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, 's', $username);
+    mysqli_stmt_bind_param($stmt, 'ss', $username, $username);
     mysqli_stmt_execute($stmt);
 
     $resultData = mysqli_stmt_get_result($stmt);
@@ -114,7 +114,7 @@ function checkedUid($conn, $username) {
 }
 
 function checkedPwd($conn, $username, $password) {
-    $sql = 'SELECT * FROM account_info WHERE username = $username AND password = $password;';
+    $sql = 'SELECT * FROM account_info WHERE username = ? AND password = ?;';
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header('location: ../page/login.php?error=stmtfailed');
@@ -159,13 +159,8 @@ function loginUser($conn, $username, $password) {
     setcookie('username', $row['username'], time() + 86400 * 30, '/btl');
     setcookie('role', $row['role'], time() + 86400 * 30, '/btl');
 
-    mysqli_close($conn);
+    mysqli_stmt_close($stmt);
 
-    if ($row['role'] == 'ADMIN') {
-      header('location: /btl/admin/');
-      exit();
-    } else {
-      header('location: /btl/');
-      exit();
-    }
+    header('location: /btl/account/page/login.php?error=none');
+    exit();
 }

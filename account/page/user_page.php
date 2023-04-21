@@ -2,9 +2,9 @@
 
 include '../include/header.php';
 
-if (isset($_GET["id"])){
-  $id = $_GET["id"];
-  $data = mysqli_query($conn,"SELECT * FROM account WHERE id = $id");
+if (isset($_SESSION["user_id"])){
+  $id = $_SESSION["user_id"];
+  $data = mysqli_query($conn, "SELECT * FROM account_info WHERE user_id = $id");
   $data = mysqli_fetch_assoc($data);
   $username = $data["username"];
   $feedback = mysqli_query($conn,"SELECT * FROM feedback WHERE username = '$username'");
@@ -12,7 +12,7 @@ if (isset($_GET["id"])){
 ?>
 
 <?php
-  if (isset($_SESSION['id'])) {
+  if (isset($_SESSION['user_id'])) {
 ?>
     <div id="body" class="row">
         <div class="col-4">

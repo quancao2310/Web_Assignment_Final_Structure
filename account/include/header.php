@@ -31,14 +31,8 @@ include '../include/config.php';
           echo "?id=" . $_SESSION['id']; } ?>">User</a></li>
         <li>
           <?php
-            if (!isset($_SESSION['user_name'])) {
-              if (!isset($_SESSION['admin_name'])) {
-                echo "<a href=\"../page/login.php\"><button type=\"button\" name=\"login\" class=\"login-btn\">Login</button></a>";
-                echo "<a href=\"../page/register.php\"><button type=\"button\" name=\"register\" class=\"register-btn\">Register</button></a>";
-              }
-              else {
-                echo "<a href=\"logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
-              }
+            if (!isset($_SESSION['username'])) {
+              echo "<a href=\"logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
             } else {
               echo "<a href=\"../include/logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
             }
