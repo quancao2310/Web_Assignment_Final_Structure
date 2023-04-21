@@ -5,7 +5,7 @@ include '../include/config.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
   <meta charset="UTF-8">
@@ -24,15 +24,15 @@ include '../include/config.php';
         <img src="../logo.png" alt="QN2H" width="42px" height="30px">
     </div>
     <ul class="navbar">
-        <li><a href="../page/index.php">Home</a></li>
-        <li><a href="">Product</a></li>
+        <li><a href="/btl/">Home</a></li>
+        <li><a href="#">Product</a></li>
         <li><a href="#">News</a></li>
-        <li><a href="../page/user_page.php<?php if (isset($_SESSION['id'])) {
+        <li><a href="/btl/account/page/user_page.php<?php if (isset($_SESSION['id'])) {
           echo "?id=" . $_SESSION['id']; } ?>">User</a></li>
         <li>
           <?php
             if (!isset($_SESSION['username'])) {
-              echo "<a href=\"logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
+              echo "<a href=\"/btl/account/include/logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
             } else {
               echo "<a href=\"../include/logout.php\"><button type=\"button\" name=\"logout\" class=\"register-btn\">Logout</button></a>";
             }

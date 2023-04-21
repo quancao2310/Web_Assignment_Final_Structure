@@ -1,10 +1,20 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/btl/modules/header-footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="/btl/account/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 <?php
-
-include_once '../include/header.php';
-
-?>
-
-<?php
+  session_start();
   if (!isset($_SESSION['id'])) {
 ?>
   <div class="content">
@@ -43,7 +53,7 @@ include_once '../include/header.php';
             </span>
             <input type="password" name="r-password" id="r-password" placeholder="Xác nhận mật khẩu">
           </div>
-          <button type="submit" class="btn" name="register">Đăng kí</button>
+          <button type="submit" class="button" name="register">Đăng kí</button>
           <div class="login-register">
             <p>Đã có tài khoản? <a href="login.php" class="login-link">Đăng nhập</a></p>
           </div>
@@ -81,9 +91,16 @@ include_once '../include/header.php';
     } 
   ?>
 
+<script>
+  $(document).ready(function() {
+    $.get("/btl/modules/header.php", function(data) {
+      $("body").prepend(data);
+    });
+    $.get("/btl/modules/footer.php", function(data) {
+      $("body").append(data);
+    });
+  })
+</script>
 
-<?php
-
-include_once '../include/footer.php';
-
-?>
+</body>
+</html>

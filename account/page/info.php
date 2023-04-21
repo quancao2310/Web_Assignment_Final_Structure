@@ -1,73 +1,87 @@
 <?php 
+  session_start();
+  include '../include/config.php';
+  if (isset($_POST['change'])) {
+    
+    $name = $_POST['name'];
+    $gender = $_POST['gender'];
+    $birthday = $_POST['birthday'];
+    $phone = $_POST['phone'];
+    $id = $_SESSION['user_id'];
 
-include_once '../include/header.php';
+    if (isset($_POST['name'])) {
+      $sql = "UPDATE account_info SET name = ? WHERE user_id = $id;";
+      $stmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header('location: ../page/register.php?error=stmtfailed');
+          exit();
+      }
 
-if (isset($_POST['change'])) {
-  
-  $name = $_POST['name'];
-  $gender = $_POST['gender'];
-  $birthday = $_POST['birthday'];
-  $phone = $_POST['phone'];
-  $id = $_SESSION['user_id'];
-
-  if (isset($_POST['name'])) {
-    $sql = "UPDATE account_info SET name = ? WHERE user_id = $id;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header('location: ../page/register.php?error=stmtfailed');
-        exit();
+      mysqli_stmt_bind_param($stmt, 's', $name);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
     }
 
-    mysqli_stmt_bind_param($stmt, 's', $name);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-  }
+    if (isset($_POST['gender'])) {
+      $sql = "UPDATE account_info SET gender = ? WHERE user_id = $id;";
+      $stmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header('location: ../page/register.php?error=stmtfailed');
+          exit();
+      }
 
-  if (isset($_POST['gender'])) {
-    $sql = "UPDATE account_info SET gender = ? WHERE user_id = $id;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header('location: ../page/register.php?error=stmtfailed');
-        exit();
+      mysqli_stmt_bind_param($stmt, 's', $gender);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
     }
 
-    mysqli_stmt_bind_param($stmt, 's', $gender);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-  }
+    if (isset($_POST['birthday'])) {
+      $sql = "UPDATE account_info SET birthday = ? WHERE user_id = $id;";
+      $stmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header('location: ../page/register.php?error=stmtfailed');
+          exit();
+      }
 
-  if (isset($_POST['birthday'])) {
-    $sql = "UPDATE account_info SET birthday = ? WHERE user_id = $id;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header('location: ../page/register.php?error=stmtfailed');
-        exit();
+      mysqli_stmt_bind_param($stmt, 's', $_POST['birthday']);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
     }
 
-    mysqli_stmt_bind_param($stmt, 's', $_POST['birthday']);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-  }
+    if (isset($_POST['phone'])) {
+      $sql = "UPDATE account_info SET phone = ? WHERE user_id = $id;";
+      $stmt = mysqli_stmt_init($conn);
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+          header('location: ../page/register.php?error=stmtfailed');
+          exit();
+      }
 
-  if (isset($_POST['phone'])) {
-    $sql = "UPDATE account_info SET phone = ? WHERE user_id = $id;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header('location: ../page/register.php?error=stmtfailed');
-        exit();
+      mysqli_stmt_bind_param($stmt, 's', $phone);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
     }
 
-    mysqli_stmt_bind_param($stmt, 's', $phone);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+    header('location: /btl/account/page/info.php?error=none');
+    exit();
   }
-
-  mysqli_close($conn);
-  header('location: /btl/account/page/info.php?error=none');
-  exit();
-}
-
 ?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="/btl/modules/header-footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="/btl/account/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
 
 <div class="content">
   <div class="wrapper info-box">
@@ -78,7 +92,7 @@ if (isset($_POST['change'])) {
           <span class="icon">
             <ion-icon name="pencil-outline"></ion-icon>
           </span>
-          <input type="text" name="name" id="name" required pattern="^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$" title="Enter your name" placeholder="Name">
+          <input type="text" name="name" id="name" required pattern="^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$" title="Enter your name" placeholder="Name" autofocus>
         </div>
         <div class="input-box-gender">
           <span>Giới tính</span>
@@ -105,7 +119,7 @@ if (isset($_POST['change'])) {
           </span>
           <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" required title="Enter your phone number, must contain 10 number" placeholder="Phone">
         </div>
-        <button type="submit" class="btn" name="change" title="Register">Thay đổi</button>
+        <button type="submit" class="button" name="change" title="Confirm">Thay đổi</button>
       </form>
       <?php
         if (isset($_GET['error'])) {
@@ -116,8 +130,17 @@ if (isset($_POST['change'])) {
   </div>
 </div>
 
-<?php
+<script>
+  $(document).ready(function() {
+    $.get("/btl/modules/header.php", function(data) {
+      $("body").prepend(data);
+    });
+    $.get("/btl/modules/footer.php", function(data) {
+      $("body").append(data);
+    });
+  })
+</script>
 
-include_once '../include/footer.php';
-
+</body>
+</html>
 ?>
