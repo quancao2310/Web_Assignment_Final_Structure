@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -56,11 +60,12 @@
                 if ($_SESSION['role'] == 'ADMIN') {
                   header('location: /btl/admin/');
                   exit();
-                } else if ($_SESSION['role'] == 'GUEST'){
+                } else if ($_SESSION['role'] == 'GUESS'){
                   header('location: /btl/');
                   exit();
                 } else {
-                  
+                  header('location: /btl/account/page/ban.html');
+                  exit();
                 }
               }
             }
