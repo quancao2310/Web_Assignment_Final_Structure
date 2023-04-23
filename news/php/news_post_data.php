@@ -1,9 +1,6 @@
 <?php
 session_start();
-// $login = true;
-// if (!isset($_SESSION['username'])) {
-//   $login = false;
-// }
+header('Content-Type: application/json');
 
 if (!isset($_POST['news_id'])) {
   die("404");

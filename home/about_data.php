@@ -4,7 +4,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : "";
 
 <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
   <ol class="breadcrumb m-0">
-    <li class="breadcrumb-item"><a href="index.html" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page" class="text-secondary">
       <?php
       if ($page == "") {
@@ -20,7 +20,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : "";
         echo "Điều khoản dịch vụ";
       }
       else {
-        die("404");
+        http_response_code(404);
+        header("Location: ../page_not_found.html");
+        exit;
       }
       ?>
     </li>
@@ -44,7 +46,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : "";
     ?>
       <h1 class="text-primary fw-semibold mb-5">Giới thiệu</h1>
       <div class="d-flex justify-content-center w-100 mb-5">
-        <img src="images/logo.png" alt="QN2H">
+        <img src="../images/logo.png" alt="QN2H">
       </div>
       <h5>
         QN2H là local brand được thành lập và xuất hiện lần đầu tiên vào đầu tháng 02/2023. 
@@ -171,9 +173,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : "";
       </ul>
 
     <?php
-    }
-    else {
-      die("404");
     }
     ?>
     </div>

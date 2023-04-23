@@ -1,7 +1,7 @@
 <?php
 session_start();
 $login = $role = '';
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['user_id'])) {
   $login = true;
   $role = $_SESSION['role'];
 }
@@ -25,7 +25,7 @@ else {
         ?>
         <div class="dropdown">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://picsum.photos/200" alt="Avatar" width="32" height="32" class="rounded-circle">
+            <img src="/btl/images/standard_avt.jpg" alt="Avatar" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-small">
             <li>

@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link href="/btl/css/header-footer.css" rel="stylesheet">
-  <link href="/btl/css/comment.css" rel="stylesheet">
+  <link href="../modules/header-footer.css" rel="stylesheet">
+  <link href="comment.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
@@ -102,11 +102,11 @@
     }
     $(document).ready(function() {
       let news_id = 0;
-      // Header footer
-      $.get("/btl/modules/header.php", function(data) {
+      // Add header and footer
+      $.get("../modules/header.php", function(data) {
         $("body").prepend(data);
       });
-      $.get("/btl/modules/footer.php", function(data) {
+      $.get("../modules/footer.php", function(data) {
         $("body").append(data);
       });
       // Get news id
@@ -116,80 +116,93 @@
         data = {news_id: id};
       }
       // Get data of news
-      $.post("news_post_data.php", data, function(data) {
-        data = JSON.parse(data);
-        console.log(data);
-        let { newsInfo, newsComment } = data;
-        let user_login_id, login;
-        if (document.cookie !== '') {
-          let arr = document.cookie.split(';');
-          let cookies = {}
-          for (let item of arr) {
-            item = item.trim();
-            let [name, value] = item.split('=');
-            cookies[name] = value;
-          }
-          login = 'user_id' in cookies;
-          user_login_id = login ? parseInt(cookies['user_id']) : null;
-        }
-        
-        news_id = parseInt(newsInfo['news_id']);
-
-        // News content section
-        $("#breadcrumb-news-name, #news-name").html(newsInfo['name']);
-        $("#news-summary").html(newsInfo['summary']);
-        let date = new Date(newsInfo['date_modified']);
-        $("#news-date").html("Ngày đăng: " + date.toLocaleDateString('en-GB'));
-        $("#news-content").html(newsInfo['content']);
-
-        // Comment section
-        if (!login) {
-          $(".comment-submit").replaceWith("<div class='text-danger'>Vui lòng đăng nhập để viết hoặc trả lời bình luận</div>");
-          $(".submit").remove();
-        }
-        for (let cmt of newsComment) {
-          if (cmt['reply_id'] == 0) {
-            let newCmt = createNewCmt(cmt['name'], cmt['timestamp'], cmt['content'], true, cmt['comment_id'], cmt['user_id'], user_login_id);
-            let newBlock = $("<div>").attr({
-              class: 'comment-block pt-4',
-              id: "cmt-id-" + cmt['comment_id']
-            }).html(newCmt);
-            $(".comment-display").append(newBlock);
-          }
-          else {
-            let parentSubCmt = $("#cmt-id-" + cmt['reply_id']).children(".subcomment");
-            if (parentSubCmt.children().length == 1) {
-              parentSubCmt.prepend(
-                '<div class="icon"> \
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up" viewBox="0 0 16 16"> \
-                    <path fill-rule="evenodd" d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"/> \
-                  </svg> \
-                </div>');
+      $.ajax({
+        type: 'POST',
+        url: "php/news_post_data.php",
+        data: data,
+        dataType: 'JSON',
+        success: function(data) {
+          let { newsInfo, newsComment } = data;
+          let user_login_id, login;
+          if (document.cookie !== '') {
+            let arr = document.cookie.split(';');
+            let cookies = {}
+            for (let item of arr) {
+              item = item.trim();
+              let [name, value] = item.split('=');
+              cookies[name] = value;
             }
-            let childCmt = createNewCmt(cmt['name'], cmt['timestamp'], cmt['content'], false, cmt['comment_id'], cmt['user_id'], user_login_id);
-            parentSubCmt.children(".other-comments").append(childCmt);
+            login = 'user_id' in cookies;
+            user_login_id = login ? parseInt(cookies['user_id']) : null;
           }
-        }
-        $("#cmt-count").html(newsComment.length + " bình luận");
-        // Reply comment
-        $(".reply-button").click(function(event) {
-          let id = event.target.id;
-          id = id.split('-');
-          id = parseInt(id[id.length - 1]);
-          // console.log(id);
-          $("#reply_id").val(id);
-        });
-        // Delete comment
-        $(".delete-comment").click(function(event) {
-          let tmp = event.target.id.split('-');
-          let comment_id = tmp[tmp.length - 1];
-          $.post("delete_comment.php", {comment_id: comment_id}, function(data) {
-            alert(data);
-            location.reload();
-          })
-        })
-      });
+          
+          news_id = parseInt(newsInfo['news_id']);
 
+          // News content section
+          $("#breadcrumb-news-name, #news-name").html(newsInfo['name']);
+          $("#news-summary").html(newsInfo['summary']);
+          let date = new Date(newsInfo['date_modified']);
+          $("#news-date").html("Ngày đăng: " + date.toLocaleDateString('en-GB'));
+          $("#news-content").html(newsInfo['content']);
+
+          // Comment section
+          if (!login) {
+            $(".comment-submit").replaceWith("<div class='text-danger'>Vui lòng đăng nhập để viết hoặc trả lời bình luận</div>");
+            $(".submit").remove();
+          }
+          for (let cmt of newsComment) {
+            if (cmt['reply_id'] == 0) {
+              let newCmt = createNewCmt(cmt['name'], cmt['timestamp'], cmt['content'], true, cmt['comment_id'], cmt['user_id'], user_login_id);
+              let newBlock = $("<div>").attr({
+                class: 'comment-block pt-4',
+                id: "cmt-id-" + cmt['comment_id']
+              }).html(newCmt);
+              $(".comment-display").append(newBlock);
+            }
+            else {
+              let parentSubCmt = $("#cmt-id-" + cmt['reply_id']).children(".subcomment");
+              if (parentSubCmt.children().length == 1) {
+                parentSubCmt.prepend(
+                  '<div class="icon"> \
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-up" viewBox="0 0 16 16"> \
+                      <path fill-rule="evenodd" d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"/> \
+                    </svg> \
+                  </div>');
+              }
+              let childCmt = createNewCmt(cmt['name'], cmt['timestamp'], cmt['content'], false, cmt['comment_id'], cmt['user_id'], user_login_id);
+              parentSubCmt.children(".other-comments").append(childCmt);
+            }
+          }
+          $("#cmt-count").html(newsComment.length + " bình luận");
+          // Reply comment
+          $(".reply-button").click(function(event) {
+            let id = event.target.id;
+            id = id.split('-');
+            id = parseInt(id[id.length - 1]);
+            // console.log(id);
+            $("#reply_id").val(id);
+          });
+          // Delete comment
+          $(".delete-comment").click(function(event) {
+            let tmp = event.target.id.split('-');
+            let comment_id = tmp[tmp.length - 1];
+            $.ajax({
+              type: 'POST',
+              url: "php/delete_comment.php",
+              data: {comment_id: comment_id},
+              success: function(data) {
+                alert(data);
+                location.reload();
+              },
+              error: function(xhr) {
+                alert(xhr.responseText);
+              }
+            })
+          })
+        }
+      })
+
+      // Add comment
       $(".submit").click(function(event) {
         let textareaNum = (event.target.id == "main-submit") ? 0 : 1;
         let content = $(".commentContent").get(textareaNum).value;
@@ -197,12 +210,18 @@
         if (content == "") return;
         let reply_id = (event.target.id == "main-submit") ? 0 : parseInt($("#reply_id").val());
         console.log(reply_id);
-        $.post("add_comment.php", {news_id: news_id, content: content, reply_id: reply_id}, function(data) {
-          // alert(data);
-          location.reload();
-        });
-      });
-
+        $.ajax({
+          type: 'POST',
+          url: "php/add_comment.php",
+          data: {news_id: news_id, content: content, reply_id: reply_id},
+          success: function() {
+            location.reload();
+          },
+          error: function(xhr) {
+            if (xhr.status == 500) alert("Please try again");
+          }
+        })
+      })
       
     })
   </script>
