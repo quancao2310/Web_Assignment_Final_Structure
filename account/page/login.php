@@ -14,6 +14,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+  <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
+    <ol class="breadcrumb m-0">
+      <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+      <li class="breadcrumb-item active" aria-current="page" class="text-secondary">Đăng nhập</li>
+    </ol>
+  </nav>
   <div class="content">
     <div class="wrapper login-box">
       <div class="form-box login-form">
@@ -50,9 +56,11 @@
                 if ($_SESSION['role'] == 'ADMIN') {
                   header('location: /btl/admin/');
                   exit();
-                } else {
+                } else if ($_SESSION['role'] == 'GUEST'){
                   header('location: /btl/');
                   exit();
+                } else {
+                  
                 }
               }
             }

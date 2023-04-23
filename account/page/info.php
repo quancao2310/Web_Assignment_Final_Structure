@@ -82,7 +82,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
+    <ol class="breadcrumb m-0">
+      <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="/btl/account/page/user_page.php" class="text-dark fw-bold text-decoration-none">Thông tin cá nhân</a></li>
+      <li class="breadcrumb-item active" aria-current="page" class="text-secondary">Đổi thông tin</li>
+    </ol>
+  </nav>
 <div class="content">
   <div class="wrapper info-box">
     <div class="form-box info-form">
@@ -143,4 +149,3 @@
 
 </body>
 </html>
-?>

@@ -31,16 +31,20 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, .5);
     overflow: hidden;
     margin-top: 20px;
-    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+
+/* Styles for default (base) layout */
 .login-box {
-    width: 33%;
+    width: 450px;
     height: max-content;
 }
 
 .register-box {
-    width: 33%;
+    width: 450px;
     height: max-content;
 }
 
@@ -48,6 +52,102 @@ body {
     width: 450px;
     height: max-content;
 }
+/* Styles for phones*/
+@media screen and (max-width: 480px) {
+    /* Styles for phones */
+    .login-box {
+        width: 350px;
+        height: max-content;
+    }
+    
+    .register-box {
+        width: 350px;
+        height: max-content;
+    }
+    
+    .info-box {
+        width: 350px;
+        height: max-content;
+    }
+}
+
+/* Styles for tablets*/
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    /* Styles for tablets */
+    .login-box {
+        width: 400px;
+        height: 430px;
+    }
+    
+    .register-box {
+        width: 400px;
+        height: 450px;
+    }
+    
+    .info-box {
+        width: 400px;
+        height: 450px;
+    }
+}
+
+/* Styles for laptops*/
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Styles for laptops */
+    .login-box {
+        width: 450px;
+        height: 600px;
+    }
+    
+    .register-box {
+        width: 450px;
+        height: 600px;
+    }
+    
+    .info-box {
+        width: 450px;
+        height: 600px;
+    }
+}
+
+/* Styles for computers*/
+@media screen and (min-width: 1025px) and (max-width: 1200px){
+    /* Styles for computers */
+    .login-box {
+        width: 450px;
+        height: 500px;
+    }
+    
+    .register-box {
+        width: 450px;
+        height: 600px;
+    }
+    
+    .info-box {
+        width: 450px;
+        height: 600px;
+    }
+}
+
+/* Styles for TV*/
+@media screen and (min-width: 1201px){
+    /* Styles for TV */
+    .login-box {
+        width: 400px;
+        height: 430px;
+    }
+    
+    .register-box {
+        width: 430px;
+        height: 600px;
+    }
+    
+    .info-box {
+        width: 400px;
+        height: 430px;
+    }
+}
+
+
 
 .wrapper .form-box {
     width: 100%;

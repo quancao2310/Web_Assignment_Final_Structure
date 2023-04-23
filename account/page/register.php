@@ -17,6 +17,12 @@
   session_start();
   if (!isset($_SESSION['id'])) {
 ?>
+  <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
+    <ol class="breadcrumb m-0">
+      <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+      <li class="breadcrumb-item active" aria-current="page" class="text-secondary">Đăng kí</li>
+    </ol>
+  </nav>
   <div class="content">
     <div class="wrapper register-box">
       <div class="form-box register-form">
