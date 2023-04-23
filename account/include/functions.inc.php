@@ -151,11 +151,11 @@ function loginUser($conn, $username, $password) {
 
     $row = mysqli_fetch_assoc($resultData);
 
-    $_SESSION['username'] = $row['name'];
+    $_SESSION['username'] = $row['username'];
     $_SESSION['user_id'] = $row['user_id'];
     $_SESSION['role'] = $row['role'];
 
-    setcookie('user_id', $row['id'], time() + 86400 * 30, '/btl');
+    setcookie('user_id', $row['user_id'], time() + 86400 * 30, '/btl');
     setcookie('username', $row['username'], time() + 86400 * 30, '/btl');
     setcookie('role', $row['role'], time() + 86400 * 30, '/btl');
 
