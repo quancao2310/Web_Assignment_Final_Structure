@@ -1,25 +1,40 @@
 <?php
 session_start();
+header('Content-Type: application/json');
+
+if (!isset($_SESSION['user_id'])) {
+  http_response_code(403);
+  die();
+}
+
+$user_id = $_SESSION['user_id'];
 
 $db_connect = mysqli_connect('localhost', 'root', '', 'manager');
 if (!$db_connect) {
-  die("Database connection failed.");
+  http_response_code(500);
+  echo json_encode("Database connection failed.");
+  exit;
 }
 
-$sql = "SELECT * FROM payment_info WHERE user_id=" . $_SESSION["user_id"];
-$result = mysqli_query($db_connect, $sql);
-if (mysqli_num_rows($result) == 0) {
-  // User has no bill during the past, so return null
-  echo "";
+$sql1 = mysqli_query($db_connect, "SELECT * FROM payment_info WHERE user_id=$user_id ORDER BY bill_id DESC");
+$sql2 = mysqli_query($db_connect, "SELECT bi.*, img.image_1 FROM bill_info bi INNER JOIN product_image img ON bi.product_id=img.product_id WHERE bi.user_id=$user_id");
+if ($sql1 && $sql2) {
+  http_response_code(200);
+  if (mysqli_num_rows($sql1) == 0) {
+    echo json_encode("");
+  }
+  else {
+    $data = array(
+      "payment_info" => mysqli_fetch_all($sql1, MYSQLI_ASSOC), 
+      "bill_info" => mysqli_fetch_all($sql2, MYSQLI_ASSOC)
+    );
+    echo json_encode($data);
+  }
 }
 else {
-  // Get all bills from payment info
-  $billList = mysqli_fetch_all($result, MYSQLI_ASSOC);
-  // Encode them
-  echo json_encode($billList);
-  // They should have the following format after fetching and encoding:
-  // [ [bill_id, user_id, customer_name ... status], [bill_id, user_id, customer_name ... status], ... ]
+  http_response_code(500);
+  echo json_encode("Query database failed");
 }
-mysqli_close($db_connect) ;
-exit;
+
+mysqli_close($db_connect);
 ?>
