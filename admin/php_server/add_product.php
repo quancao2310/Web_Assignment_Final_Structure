@@ -40,7 +40,6 @@
                 }
             }
             $query = $query.")";
-            echo $query;
             mysqli_query($connection,$query);
         }
     }

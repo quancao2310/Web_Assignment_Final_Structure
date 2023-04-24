@@ -40,7 +40,7 @@
                     exit;
                 }
                 if ($for=="unban"){
-                    mysqli_query($connection,"UPDATE account_info SET role = 'GUESS', more = '' WHERE user_id = $id");
+                    mysqli_query($connection,"UPDATE account_info SET role = 'GUEST', more = '' WHERE user_id = $id");
                     mysqli_close($connection);
                     header("Location: account_detail.php?id=$id");
                     exit;

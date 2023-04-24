@@ -45,7 +45,7 @@
             </ol>
         </nav>
         <?php 
-            if ($data["role"]=="GUESS"){
+            if ($data["role"]=="GUEST"){
                 ?>
                 <button type="button" class="btn mx-2 btn-warning w-25 mb-2" onclick="location.href='authentic.php?for=ban&id=<?php echo $data["user_id"];?>'">Cấm tài khoản này</button>
                 <button type="button" class="btn mx-2 btn-danger w-25 mb-2" onclick="location.href='authentic.php?for=del&id=<?php echo $data["user_id"];?>'">Xóa tài khoản này</button>
