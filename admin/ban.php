@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        header("Location: /btl/page_not_found.html");
+        exit;
+    }
     if (!isset($_GET["id"])){
         header("Location: page_not_found.html");
         exit;
@@ -7,13 +12,13 @@
     $host = "localhost"; 
     $user = "root";
     $password = ""; 
-    $database = "btl";
+    $database = "manager";
     $connection = mysqli_connect($host, $user, $password, $database);
-    $data = mysqli_query($connection,"SELECT * FROM account WHERE id = $id");
+    $data = mysqli_query($connection,"SELECT * FROM account_info WHERE user_id = $id");
     $data = mysqli_fetch_assoc($data);
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $detail = $_POST["detail"];
-        mysqli_query($connection,"UPDATE account SET role = 'BAN', more = '$detail' WHERE id = $id");
+        mysqli_query($connection,"UPDATE account_info SET role = 'BAN', more = '$detail' WHERE user_id = $id");
         mysqli_close($connection);
         header("Location: account_list.html");
         exit;

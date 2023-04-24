@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        header("Location: /btl/page_not_found.html");
+        exit;
+    }
     $id = 1;
     if (isset($_GET["id"])){
         $id = $_GET["id"];

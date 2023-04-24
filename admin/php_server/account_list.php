@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        http_response_code(404);
+        exit;
+    }
     $page = 1;
     if (isset($_POST["page"])){
         $page = $_POST["page"];
@@ -47,7 +52,7 @@
                     <td> 
                         <?php 
                         if ($row["role"]!="ADMIN") {
-                            if ($row["role"]=="GUESS"){
+                            if ($row["role"]=="GUEST"){
                         ?>
                         <button type="button" class="btn btn-sm btn-warning" onclick="location.href='authentic.php?for=ban&id=<?php echo $row["user_id"];?>'">Khóa</button>
                         <?php

@@ -60,7 +60,7 @@
                 if ($_SESSION['role'] == 'ADMIN') {
                   header('location: /btl/admin/');
                   exit();
-                } else if ($_SESSION['role'] == 'GUESS'){
+                } else if ($_SESSION['role'] == 'GUEST'){
                   header('location: /btl/');
                   exit();
                 } else {

@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        http_response_code(404);
+        exit;
+    }
     $page = 1;
     if (isset($_POST["page"])){
         $page = $_POST["page"];

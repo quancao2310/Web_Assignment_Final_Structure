@@ -1,4 +1,9 @@
-<?php 
+<?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        header("Location: /btl/page_not_found.html");
+        exit;
+    }
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $product_id = $_POST["product_id"];
         $product_name = $_POST["product_name"];
