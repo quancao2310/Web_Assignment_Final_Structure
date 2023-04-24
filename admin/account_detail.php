@@ -107,7 +107,7 @@
                         $productid = $active["product_id"];
                         $product = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM product_info WHERE product_id = $productid"));
                     ?>
-                    <li class="list-group-item">Đánh giá <?php star($active["stars"]);?> cho <a href="#"> <?php echo $product["product_name"];?></a></li>
+                    <li class="list-group-item">Đánh giá <?php star($active["stars"]);?> cho <a href="/btl/products/productDetail/productDetail.php?product_id=<?php echo $product["product_id"]; ?>"> <?php echo $product["product_name"];?></a></li>
                     <?php 
                         $active = $data = mysqli_fetch_assoc($feedback);
                     } 
