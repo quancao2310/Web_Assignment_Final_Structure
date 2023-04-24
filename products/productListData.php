@@ -1,5 +1,5 @@
 <?php
-include "../utilities/connect.php";
+include "../modules/connect.php";
 $sql = "SELECT product_info.product_id, product_info.product_type, product_info.product_name, product_info.product_price, product_image.image_1
             FROM product_info
             LEFT JOIN product_image 

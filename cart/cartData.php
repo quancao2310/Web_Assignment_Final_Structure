@@ -1,6 +1,10 @@
 <?php
 session_start();
-include "../utilities/connect.php";
+if (!isset($_SESSION['user_id'])) {
+    header("location: /btl/account/page/login.php");
+    exit;
+}
+include "../modules/connect.php";
 $sql = "SELECT cart_info.*, product_name 
         FROM cart_info 
         INNER JOIN product_info 

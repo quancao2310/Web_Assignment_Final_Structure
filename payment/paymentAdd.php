@@ -1,6 +1,11 @@
 <?php
 session_start();
-include "../utilities/connect.php";
+if (!isset($_SESSION["user_id"])) {
+    mysqli_close($connection);
+    http_response_code(403);
+    exit;
+}
+include "../modules/connect.php";
 function validateVietnameseName($name)
 {
     $regex = '/^[\p{L}\s]+$/u';
@@ -112,7 +117,7 @@ if (mysqli_query($connection, $sql)) {
             } else {
                 $qty_2_arr = mysqli_fetch_array($get_qty_2);
                 $left = $qty_2_arr[0] - $_SESSION["prod_list"][$j][1];
-                $update_sql = "UPDATE product_info SET quantity=" . $left.
+                $update_sql = "UPDATE product_info SET quantity=" . $left .
                     " WHERE product_id=" . $_SESSION["prod_list"][$j][0];
                 if (!mysqli_query($connection, $update_sql)) {
                     mysqli_close($connection);

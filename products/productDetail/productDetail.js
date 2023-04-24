@@ -1,6 +1,6 @@
 let instock_qty = 0
 $(document).ready(function () {
-    $.get("productDetailData.php", { product_id: prod_id }, function (data) {
+    $.post("productDetailData.php", { product_id: prod_id }, function (data) {
         let product_detail = JSON.parse(data)
         let prod_img = ""
         let prod_indicator = ""
@@ -51,7 +51,7 @@ $(document).ready(function () {
         }
         instock_qty = product_detail[0][7]
     })
-    $.get("productDetailRelevant.php", { product_id: prod_id }, function (data) {
+    $.post("productDetailRelevant.php", { product_id: prod_id }, function (data) {
         if (data != "") {
             const obj = JSON.parse(data)
             let itemNum = 0
@@ -135,7 +135,7 @@ function add(prod_id) {
         alert("Vui lòng chọn màu để tiếp tục")
         return
     }
-    $.post("../cart/cartAdd.php", {
+    $.post("/btl/cart/cartAdd.php", {
         prod_id: prod_id,
         quantity: quantity,
         size: size,
@@ -146,10 +146,13 @@ function add(prod_id) {
 }
 
 $(document).ajaxError(function (event, xhr) {
-    if (xhr.status == 400)
-        alert("Có vẻ bạn chưa đăng nhập, hoặc có gì đó không ổn với sản phẩm bạn chọn. Vui lòng đăng nhập hoặc kiểm tra lại")
+    if (xhr.status == 403) {
+        alert("Có vẻ bạn chưa đăng nhập. Vui lòng đăng nhập hoặc kiểm tra lại")
+        location.href = "/btl/account/page/login.php"
+    }
     else if (xhr.status == 404) {
-        alert("Có vẻ sản phẩm này không tồn tại hoặc đã bị xoá. Vui lòng kiểm tra lại")
+        alert("Có vẻ sản phẩm này không tồn tại, đã bị xoá hoặc sai thông tin. Vui lòng kiểm tra lại")
+        location.href = "/btl/page_not_found.html"
     }
     else if (xhr.status == 500)
         alert("Có gì đó không ổn. Vui lòng thử lại")

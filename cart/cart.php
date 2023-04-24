@@ -1,18 +1,9 @@
 <?php
 session_start();
-include "../utilities/connect.php";
-if (isset($_SESSION["login"]) && $_SESSION["login"]) {
-    if (!isset($_SESSION["role"])) {
-        $sql = "SELECT role FROM account_info WHERE user_id=" . $_SESSION["user_id"];
-        $result = mysqli_query($connection, $sql);
-        $_SESSION["role"] = $result;
-    }
-} else {
-    mysqli_close($connection);
-    header("location: login.php");
+if (!isset($_SESSION['user_id'])) {
+    header("location: /btl/account/page/login.php");
     exit;
 }
-mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -22,7 +13,7 @@ mysqli_close($connection);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="../utilities/header-footer.css">
+    <link type="text/css" rel="stylesheet" href="../modules/header-footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
 </head>
@@ -31,16 +22,16 @@ mysqli_close($connection);
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/btl/">Trang chủ</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
             </ol>
         </nav>
     </div>
     <h2 class="text-center">Giỏ hàng</h2>
     <div class="container-lg">
-    <form method="post" id="payment">
-        <div class="row">
-            
+        <form method="post" id="payment">
+            <div class="row">
+
                 <div class="col-lg-8">
                     <h4>Danh sách hàng hoá</h4>
                     <p id="isNone"></p>
@@ -71,8 +62,8 @@ mysqli_close($connection);
                         <button type="submit" class="btn btn-dark" id="paybegin">Thanh toán</button>
                     </div>
                 </div>
-            
-        </div>
+
+            </div>
         </form>
 
     </div>
