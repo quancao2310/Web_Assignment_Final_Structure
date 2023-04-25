@@ -1,6 +1,6 @@
 <?php 
 
-include '../include/config.php';
+include 'include/config.php';
 
 ?>
 
@@ -21,7 +21,7 @@ include '../include/config.php';
 <body>
   <header>
     <div class="logo">
-        <img src="../logo.png" alt="QN2H" width="42px" height="30px">
+        <img src="../../images/logo.png" alt="QN2H" width="42px" height="30px">
     </div>
     <ul class="navbar">
         <li><a href="/btl/">Home</a></li>

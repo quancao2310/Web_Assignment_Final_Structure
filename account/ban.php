@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../include/config.php';
+include 'include/config.php';
 if (isset($_SESSION["user_id"])){
   $id = $_SESSION["user_id"];
   $data = mysqli_query($conn, "SELECT * FROM account_info WHERE user_id = $id");

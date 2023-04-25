@@ -29,7 +29,7 @@ else {
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-small">
             <li>
-              <a href="/btl/account/page/user_page.php" class="dropdown-item">Thông tin cá nhân</a>
+              <a href="/btl/account/user_page.php" class="dropdown-item">Thông tin cá nhân</a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
@@ -79,32 +79,24 @@ else {
         ?>
         <ul class="navbar-nav fw-semibold me-auto d-lg-none">
           <li class="nav-item">
-            <a href="/btl/account/page/login.php" class="nav-link text-black">Đăng nhập</a>
+            <a href="/btl/account/login.php" class="nav-link text-black">Đăng nhập</a>
           </li>
           <li class="nav-item">
-            <a href="/btl/account/page/register.php" class="nav-link text-black">Đăng ký</a>
+            <a href="/btl/account/register.php" class="nav-link text-black">Đăng ký</a>
           </li>
         </ul>
         <?php
         }
         ?>
-        <form class="d-flex my-3 my-lg-0 mx-lg-3" id="header-search" role="search">
-          <input class="form-control" name="search" id="search1" type="search" placeholder="Tìm kiếm" aria-label="Search">
-          <button type="submit" class="btn btn-primary d-flex justify-content-center align-items-center search-icon" title="Search button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-          </button>
-        </form>
         <?php
         if (!$login) {
         ?>
         <ul class="navbar-nav fw-semibold me-auto me-lg-0 d-none d-lg-flex">
           <li class="nav-item me-3">
-            <a href="/btl/account/page/login.php" type="button" class="btn btn-primary text-white">Đăng nhập</a>
+            <a href="/btl/account/login.php" type="button" class="btn btn-primary text-white">Đăng nhập</a>
           </li>
           <li class="nav-item">
-            <a href="/btl/account/page/register.php" type="button" class="btn btn-primary text-white">Đăng ký</a>
+            <a href="/btl/account/register.php" type="button" class="btn btn-primary text-white">Đăng ký</a>
           </li>
         </ul>
         <?php
