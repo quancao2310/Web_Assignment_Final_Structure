@@ -13,7 +13,24 @@
     $password = ""; 
     $database = "manager";
     $connection = mysqli_connect($host, $user, $password, $database);
-    $data = mysqli_query($connection,"SELECT * FROM bill_info");
+    if (isset($_POST["id"]) && isset($_POST["type"])){
+        $bill_id = $_POST["id"];
+        $query_type = $_POST["type"];
+        if ($query_type == "cancel") {
+            $data = mysqli_query($connection, "SELECT * FROM bill_info WHERE bill_id = $bill_id");
+            $row = mysqli_fetch_assoc($data);
+            while ($row){
+                $product_id = $row["product_id"];
+                $quantity = $row["chosen_quantity"];
+                mysqli_query($connection, "UPDATE product_info set quantity = quantity + $quantity WHERE product_id = $product_id");
+                $row = mysqli_fetch_assoc($data);
+            }
+            mysqli_query($connection,"DELETE FROM bill_info WHERE bill_id = $bill_id");
+        } else if ($query_type == "confirm"){
+            mysqli_query($connection,"DELETE FROM bill_info WHERE bill_id = $bill_id");
+        }
+    }
+    $data = mysqli_query($connection,"SELECT bill_id, user_id, GROUP_CONCAT(DISTINCT product_id) as product_ids, SUM(price) as prices FROM bill_info GROUP BY bill_id, user_id ORDER BY bill_id;");
     $max_page = intdiv(mysqli_num_rows($data)-1,10)+1;
     if ($page > $max_page) $page=1;
     mysqli_data_seek($data,($page-1)*10);
@@ -37,24 +54,51 @@
         <?php
         for($i=0;$i<10;$i++){
             $row = mysqli_fetch_assoc($data);
+            
             if ($row){
+                $bill_id = $row["bill_id"];
                 ?>
                 <tr>
-                    <td> <?php echo $row["bill_id"]; ?> </td>
+                    <td> <?php echo $bill_id; ?> </td>
                     <td> <?php 
                     $user_id = $row["user_id"];
                     $user = mysqli_query($connection,"SELECT * FROM account_info WHERE user_id = $user_id");
                     $user = mysqli_fetch_assoc($user);
                     echo $user["username"]; 
                     ?> </td>
-                    <td> <?php echo $row["product_id"]; ?> </td>
-                    <td> <?php $row["chosen_quantity"]; ?> </td>
-                    <td> <?php echo $row["chosen_size"]; ?> </td>
-                    <td> <?php echo $row["chosen_color"]; ?> </td>
-                    <td> <?php echo $row["price"]; ?> </td>
+                    <?php
+                        $products = explode(",",$row["product_ids"]);
+                        echo "<td>";
+                        foreach ($products as $product) {
+                            echo $product."<br>";
+                        }
+                        echo "</td>";
+                        echo "<td>";
+                        foreach ($products as $product) {
+                            $detail_data = mysqli_query($connection,"SELECT chosen_quantity from bill_info WHERE bill_id = $bill_id AND product_id = $product");
+                            $detail_data = mysqli_fetch_assoc($detail_data);
+                            echo $detail_data["chosen_quantity"]."<br>";
+                        }
+                        echo "</td>";
+                        echo "<td>";
+                        foreach ($products as $product) {
+                            $detail_data = mysqli_query($connection,"SELECT chosen_size from bill_info WHERE bill_id = $bill_id AND product_id = $product");
+                            $detail_data = mysqli_fetch_assoc($detail_data);
+                            echo $detail_data["chosen_size"]."<br>";
+                        }
+                        echo "</td>";
+                        echo "<td>";
+                        foreach ($products as $product) {
+                            $detail_data = mysqli_query($connection,"SELECT chosen_color from bill_info WHERE bill_id = $bill_id AND product_id = $product");
+                            $detail_data = mysqli_fetch_assoc($detail_data);
+                            echo $detail_data["chosen_color"]."<br>";
+                        }
+                        echo "</td>";
+                    ?>
+                    <td> <?php echo $row["prices"]; ?> </td>
                     <td> 
-                        <button type="button" class="btn btn-sm btn-success">Duyệt đơn</button>
-                        <button type="button" class="btn btn-sm btn-warning">Hủy đơn</button>
+                        <button type="button" class="btn btn-sm btn-success" onclick="duyet(<?php echo $bill_id;?>)">Duyệt đơn</button>
+                        <button type="button" class="btn btn-sm btn-warning" onclick="huy(<?php echo $bill_id;?>)">Hủy đơn</button>
                     </td>
                 </tr>
                 <?php

@@ -65,6 +65,48 @@
                 }
             )
     }
+    function duyet(x){
+        window.alert("Đã duyệt");
+        $.ajax(
+                {
+                    url: 'php_server/bill_list.php',
+                    type: 'POST',
+                    data: {
+                        page: 1,
+                        id : x,
+                        type: "confirm"
+                        },
+                    success: function(data) {
+                        $("#body").html(data);
+                        },
+                    error: function(xhr, status, error) {
+                        console.log('Error: ' + error);
+                        location.href = "/btl/page_not_found.html";
+                        }
+                }
+            )
+    }
+    function huy(x){
+        window.alert("Đã hủy");
+        $.ajax(
+                {
+                    url: 'php_server/bill_list.php',
+                    type: 'POST',
+                    data: {
+                        page: 1,
+                        id : x,
+                        type: "cancel"
+                        },
+                    success: function(data) {
+                        $("#body").html(data);
+                        },
+                    error: function(xhr, status, error) {
+                        console.log('Error: ' + error);
+                        location.href = "/btl/page_not_found.html";
+                        }
+                }
+            )
+    }
     showHeader();
     showPage(1);
     $("#name_filter").on('input',function(){

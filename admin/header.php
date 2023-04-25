@@ -22,9 +22,6 @@
                         <a class="nav-link text-black" href="../news/news.html">Quản lý tin đăng</a>
                     </li>
                     <li class="nav-item me-1">
-                        <a class="nav-link text-black" href="feedback.html">Phản hồi khách hàng</a>
-                    </li>
-                    <li class="nav-item me-1">
                         <a class="nav-link text-black" href="account_list.html">Danh mục thành viên</a>
                     </li>
                     <li class="nav-item me-1">
