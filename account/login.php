@@ -60,11 +60,11 @@
                 if ($_SESSION['role'] == 'ADMIN') {
                   header('location: /btl/admin/');
                   exit();
-                } else if ($_SESSION['role'] == 'GUESS'){
+                } else if ($_SESSION['role'] == 'GUEST'){
                   header('location: /btl/');
                   exit();
-                } else {
-                  header('location: /btl/account/page/ban.html');
+                } else if ($_SESSION['role'] == 'BAN') {
+                  header('location: /btl/account/ban.php');
                   exit();
                 }
               }

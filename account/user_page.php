@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../include/config.php';
+include 'include/config.php';
 if (isset($_SESSION["user_id"])){
   $id = $_SESSION["user_id"];
   $data = mysqli_query($conn, "SELECT * FROM account_info WHERE user_id = $id");
@@ -38,7 +38,7 @@ if (isset($_SESSION["user_id"])){
   <div id="body" class="row">
       <div class="col-4">
       <div class="card" style="background-color: #E9EDC9;">
-      <img src="../<?php echo $data['avatar'];?>" alt="avatar" class="card-img-top">
+      <img src="<?php echo $data['avatar'];?>" alt="avatar" class="card-img-top">
       <div class="card-body">
           <h1 style="text-decoration: underline;"><?php echo $data["name"];?></h1>
           <h3><?php echo $data["username"];?></h3>

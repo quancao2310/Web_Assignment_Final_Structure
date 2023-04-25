@@ -83,7 +83,7 @@
               } else if ($_GET['error'] == 'stmtfailed') {
                 echo '<p class="error-msg">Something wrong!</p>';
               } else {
-                header('location: /btl/account/page/login.php');
+                header('location: /btl/account/login.php');
               }
             }
 

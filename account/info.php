@@ -13,7 +13,7 @@
       $sql = "UPDATE account_info SET name = ? WHERE user_id = $id;";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header('location: ../page/register.php?error=stmtfailed');
+          header('location: ../register.php?error=stmtfailed');
           exit();
       }
 
@@ -26,7 +26,7 @@
       $sql = "UPDATE account_info SET gender = ? WHERE user_id = $id;";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header('location: ../page/register.php?error=stmtfailed');
+          header('location: ../register.php?error=stmtfailed');
           exit();
       }
 
@@ -39,7 +39,7 @@
       $sql = "UPDATE account_info SET birthday = ? WHERE user_id = $id;";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header('location: ../page/register.php?error=stmtfailed');
+          header('location: ../register.php?error=stmtfailed');
           exit();
       }
 
@@ -52,7 +52,7 @@
       $sql = "UPDATE account_info SET phone = ? WHERE user_id = $id;";
       $stmt = mysqli_stmt_init($conn);
       if (!mysqli_stmt_prepare($stmt, $sql)) {
-          header('location: ../page/register.php?error=stmtfailed');
+          header('location: ../register.php?error=stmtfailed');
           exit();
       }
 
@@ -62,7 +62,7 @@
     }
 
     mysqli_close($conn);
-    header('location: /btl/account/page/info.php?error=none');
+    header('location: /btl/account/info.php?error=none');
     exit();
   }
 ?>
@@ -85,7 +85,7 @@
 <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
     <ol class="breadcrumb m-0">
       <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
-      <li class="breadcrumb-item"><a href="/btl/account/page/user_page.php" class="text-dark fw-bold text-decoration-none">Thông tin cá nhân</a></li>
+      <li class="breadcrumb-item"><a href="/btl/account/user_page.php" class="text-dark fw-bold text-decoration-none">Thông tin cá nhân</a></li>
       <li class="breadcrumb-item active" aria-current="page" class="text-secondary">Đổi thông tin</li>
     </ol>
   </nav>

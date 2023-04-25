@@ -10,17 +10,17 @@ if (isset($_POST['login'])) {
     require_once 'functions.inc.php';
 
     if (emptyInputLogin($username, $password) !== false) {
-        header("location: /btl/account/page/login.php?error=emptyinput");
+        header("location: /btl/account/login.php?error=emptyinput");
         exit();
     }
 
     if (!checkedUid($conn, $username) !== false) {
-        header("location: /btl/account/page/login.php?error=wrongusername");
+        header("location: /btl/account/login.php?error=wrongusername");
         exit();
     }
 
     if (!checkedPwd($conn, $username, $password) !== false) {
-        header("location: /btl/account/page/login.php?error=wrongpassword");
+        header("location: /btl/account/login.php?error=wrongpassword");
         exit();
     }
 
@@ -28,5 +28,5 @@ if (isset($_POST['login'])) {
     
 }
 else {
-    header('location:../../page/login.php');
+    header('location:../../login.php');
 }
