@@ -179,7 +179,6 @@
             let id = event.target.id;
             id = id.split('-');
             id = parseInt(id[id.length - 1]);
-            // console.log(id);
             $("#reply_id").val(id);
           });
           // Delete comment
@@ -199,6 +198,10 @@
               }
             })
           })
+        },
+        error: function(xhr) {
+          if (xhr.status == 500) alert("Server is down. Please try again");
+          location.href = "../page_not_found.html";
         }
       })
 
