@@ -31,6 +31,12 @@ else {
             <li>
               <a href="/btl/account/user_page.php" class="dropdown-item">Thông tin cá nhân</a>
             </li>
+            <li>
+              <a href="/btl/bill/bill.html" class="dropdown-item">Danh sách hóa đơn</a>
+            </li>
+            <li>
+              <a href="/btl/account/change_pwd.php" class="dropdown-item">Đổi mật khẩu</a>
+            </li>
             <li><hr class="dropdown-divider"></li>
             <li>
               <a href="/btl/account/include/logout.php" class="dropdown-item">Đăng xuất</a>

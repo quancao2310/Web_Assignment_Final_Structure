@@ -58,6 +58,15 @@
       $.get("../modules/footer.php", function(data) {
         $("body").append(data);
       })
+      let arr = document.cookie.split(';'), cookies = {};
+      for (let item of arr) {
+        item = item.trim();
+        let [name, value] = item.split('=');
+        cookies[name] = value;
+      }
+      if (document.cookie === '' || cookies['role'] != 'ADMIN') {
+        location.href = "../page_not_found.html";
+      }
       $("form").submit(function(event) {
         let name = $("#name").val(), summary = $("#summary").val(), 
             content = $("#content").val(), thumbnail = $("#thumbnail").val();

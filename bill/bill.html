@@ -20,7 +20,7 @@
     </nav>
     <div class="container-xl py-2">
       <div class="row" id="payments-display">
-        <h1 class="col-12 text-primary fw-semibold mb-3">Danh sách hóa đơn</h1>
+        <h1 class="col-12 text-primary fw-semibold text-center mb-3">Danh sách hóa đơn</h1>
         
       </div>
     </div>
@@ -32,10 +32,11 @@
       // Add header and footer
       $.get("../modules/header.php", function(data) {
         $("body").prepend(data);
-      });
+      })
       $.get("../modules/footer.php", function(data) {
         $("body").append(data);
-      });
+        $("footer").removeClass('mt-4').addClass('mt-auto');
+      })
       // Get bills info
       $.ajax({
         type: 'GET',

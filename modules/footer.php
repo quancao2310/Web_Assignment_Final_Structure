@@ -9,25 +9,6 @@
             những phản hồi của khách hàng và sẽ luôn cố gắng cải thiện chất lượng dịch vụ.
           </p>
         </div>
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <a href="/btl/products/productList.php" class="text-reset text-decoration-none hover-gold">
-            <h6 class="text-uppercase fw-bold mb-3">Sản phẩm</h6>
-          </a>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-reset hover-gold">Áo</a>
-            </li>
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-reset hover-gold">Quần</a>
-            </li>
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-reset hover-gold">Phụ kiện</a>
-            </li>
-            <li class="nav-item mb-2">
-              <a href="#" class="nav-link p-0 text-reset hover-gold">Túi</a>
-            </li>
-          </ul>
-        </div>
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <a href="/btl/home/about.html" class="text-reset text-decoration-none hover-gold">
             <h6 class="text-uppercase fw-bold mb-3">Danh mục</h6>
@@ -44,6 +25,9 @@
             </li>
             <li class="nav-item mb-2">
               <a href="/btl/home/about.html?page=termsOfService" class="nav-link p-0 text-reset hover-gold">Điều khoản dịch vụ</a>
+            </li>
+            <li class="nav-item mb-2">
+              <a href="/btl/products/productList.php" class="nav-link p-0 text-reset hover-gold">Sản phẩm</a>
             </li>
           </ul>
         </div>

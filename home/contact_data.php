@@ -24,16 +24,21 @@
     'quan.cao2310@hcmut.edu.vn', 
     'hieu.duongminv2705@hcmut.edu.vn'
   );
+  $membersPos = array('CEO', 'Admin', 'Staff', 'Staff');
   for ($i = 0; $i < 4; $i++) {
   ?>
     <div class="col mb-3">
       <div class="card border-0 text-center">
         <div class="img-container" style="height: 200px">
-          <img src="../images/standard_avt.jpg" alt="Employee" class="img-fluid" style="border-radius: 50%; height: 100%">
+          <img 
+            src="<?php echo ($i == 1) ? "https://tinyurl.com/adminAVT" : "../images/standard_avt.jpg"; ?>" 
+            alt="<?php echo ($i == 1) ? "Employee of the year" : "Employee"; ?>" 
+            class="img-fluid" style="border-radius: 50%; height: 100%" 
+          />
         </div>
         <div class="card-body pt-2">
           <h5 class="card-title"><?php echo $membersName[$i]; ?></h5>
-          <p class="card-text text-muted mb-2"><?php echo ($i == 0) ? 'CEO' : 'Staff' ?></p>
+          <p class="card-text text-muted mb-2"><?php echo $membersPos[$i]; ?></p>
           <p class="card-text mb-2">ID: <?php echo $membersID[$i]; ?></p>
           <p class="card-text mb-2 fs-6">Email: <?php echo $membersEmail[$i]; ?></p>
         </div>
