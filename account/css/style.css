@@ -6,7 +6,7 @@
 
 body {
     min-height: 100vh;
-    background: #C7E9B0;
+    background: #B2D9EA;
     background-size: cover;
 }
 
@@ -23,7 +23,7 @@ body {
 .wrapper {
     position: relative;
     background: transparent;
-    background-color: #E9EDC9;
+    background-color: #fff;
     border: 2px solid rgba(0, 0, 0, .5);
     border-radius: 20px;
     -webkit-backdrop-filter: blur(20px);
@@ -49,7 +49,7 @@ body {
 }
 
 .info-box {
-    width: 450px;
+    width: 500px;
     height: max-content;
 }
 /* Styles for phones*/
@@ -61,11 +61,10 @@ body {
     
     .register-box {
         width: 350px;
-        height: max-content;
     }
     
     .info-box {
-        width: 350px;
+        width: 450px;
     }
 }
 
@@ -81,7 +80,7 @@ body {
     }
     
     .info-box {
-        width: 400px;
+        width: 500px;
     }
 }
 
@@ -97,7 +96,7 @@ body {
     }
     
     .info-box {
-        width: 450px;
+        width: 500px;
     }
 }
 
@@ -113,7 +112,7 @@ body {
     }
     
     .info-box {
-        width: 450px;
+        width: 500px;
     }
 }
 
@@ -125,11 +124,11 @@ body {
     }
     
     .register-box {
-        width: 430px;
+        width: 450px;
     }
     
     .info-box {
-        width: 400px;
+        width: 500px;
     }
 }
 
@@ -150,8 +149,16 @@ body {
 
 .form-box .error-msg {
     font-weight: 600;
-    color: darkgreen;
+    color: #B2D9EA;
     text-align: center;
+}
+
+.form-box .help-msg {
+    font-weight: 100;
+    font-size: 10px;
+    color: #f24444;
+    text-align: center;
+    margin-bottom: 0;
 }
 
 .input-box, .input-box-gender {
@@ -160,7 +167,7 @@ body {
     height: 50px;
     border-bottom: 2px solid #162938;
     border-radius: 5px;
-    margin: 30px 0;
+    margin: 0 0 30px 0;
 }
 
 .input-box label {
@@ -280,23 +287,18 @@ input:-webkit-autofill:focus {
     text-decoration: underline;
 }
 
-
-
 #body {
     margin: 10px 0;
 }
 
-.card-body li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.card-body button {
-    border: none;
+.change-img {
+    height: 16px;
+    width: 16px;
     background: none;
-}
-
-.card-body button:hover {
-    color: #C7E9B0;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: #162938;
+    font-weight: 600;
 }

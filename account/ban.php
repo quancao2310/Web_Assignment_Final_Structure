@@ -30,6 +30,7 @@ if (isset($_SESSION["user_id"])){
     <div class="wrapper info-box">
       <div class="form-box info-form">
         <h2>Trạng thái tài khoản</h2>
+        <br>
         <?php
         if ($data["role"] != "BAN") {
           echo " Hoạt động";

@@ -1,7 +1,14 @@
+<?php
+  session_start();
+  if (isset($_SESSION["user_id"])) {
+    header('location: /btl/');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <title>Login</title>
+  <title>Đăng kí</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,10 +20,7 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<?php
-  session_start();
-  if (!isset($_SESSION['id'])) {
-?>
+<body>
   <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
     <ol class="breadcrumb m-0">
       <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
@@ -92,11 +96,6 @@
       </div>
     </div>
   </div>
-
-  <?php
-    } 
-  ?>
-
 <script>
   $(document).ready(function() {
     $.get("/btl/modules/header.php", function(data) {

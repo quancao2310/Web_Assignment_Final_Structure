@@ -1,4 +1,5 @@
 <?php
+use Vtiful\Kernel\Format;
 
 function emptyInputRegister($username, $email, $password, $r_password) {
     if (empty($username) || empty($email) || empty($password) || empty($r_password)) {
@@ -159,6 +160,18 @@ function loginUser($conn, $username, $password) {
     setcookie('username', $row['username'], time() + 86400 * 30, '/btl');
     setcookie('role', $row['role'], time() + 86400 * 30, '/btl');
 
+    mysqli_stmt_close($stmt);
+
+    $sql = "UPDATE account_info SET last_access = ? WHERE username = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+      header('location: ../register.php?error=stmtfailed');
+      exit();
+    }
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+    $now = date("Y-m-d H:i:s");
+    mysqli_stmt_bind_param($stmt, 'ss', $now, $username);
+    mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
     header('location: /btl/account/login.php?error=none');
