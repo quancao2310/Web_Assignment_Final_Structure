@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    $.post("../utilities/header.php", function (data) {
+    $.post("../modules/header.php", function (data) {
         $("body").prepend(data)
     })
-    $.post("../utilities/footer.php", function (data) {
+    $.post("../modules/footer.php", function (data) {
         $("body").append(data)
     })
     $.post("paymentData.php", function (data) {
@@ -88,6 +88,10 @@ $("#paymentInfo").submit(function (event) {
             Reload trang để kiểm tra lại, và vào giỏ hàng ấn thanh toán lại nếu bạn thật sự muốn đặt thêm một đơn tương tự`)
             return
         }
+        else if (data == "Full") {
+            alert("Một sản phẩm nào đó trong giỏ đã không còn đủ số lượng bạn yêu cầu nữa. Chân thành xin lỗi và mong quý khách kiểm tra lại")
+            return
+        }
         else if (data = "Success") {
             alert("Hoá đơn đã được thêm thành công và đang được xử lí")
             return
@@ -95,10 +99,16 @@ $("#paymentInfo").submit(function (event) {
     })
 })
 $(document).ajaxError(function (event, xhr) {
-    if (xhr.status == 400)
+    if (xhr.status == 403) {
+        alert("Có vẻ bạn chưa đăng nhập. Vui lòng đăng nhập hoặc kiểm tra lại")
+        location.href = "/btl/account/page/login.php"
+    }
+    else if (xhr.status == 400)
         alert("Có gì đó không ổn với danh sách hàng hoá được gửi đi của bạn. Vui lòng kiểm tra lại.")
-    else if (xhr.status == 404)
+    else if (xhr.status == 404) {
         alert("Có sản phẩm nào đó bị sai thông tin gửi đi hoặc không tồn tại. Vui lòng kiểm tra lại.")
+        location.href = "/btl/page_not_found.html"
+    }
     else if (xhr.status == 500)
         alert("Có gì đó không ổn. Vui lòng thử lại sau.")
 })

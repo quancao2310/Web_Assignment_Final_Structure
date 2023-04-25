@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        http_response_code(404);
+        exit;
+    }
     $page = 1;
     if (isset($_POST["page"])){
         $page = $_POST["page"];
@@ -40,7 +45,7 @@
                 ?>
                 <tr>
                     <td> <?php echo $row["product_id"]; ?> </td>
-                    <td> <a href="../productDetail/productDetail.php?product_id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_name"]; ?></a> </td>
+                    <td> <a href="/btl/products/productDetail/productDetail.php?product_id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_name"]; ?></a> </td>
                     <td> <?php echo $row["product_price"]; ?> </td>
                     <td> <?php echo substr($row["product_description"],0,150)."..."; ?> </td>
                     <td> <?php echo $row["product_type"]; ?> </td>

@@ -1,4 +1,9 @@
-<?php 
+<?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        header("Location: /btl/page_not_found.html");
+        exit;
+    }
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $product_id = $_POST["product_id"];
         $product_name = $_POST["product_name"];
@@ -19,6 +24,37 @@
         $database = "manager";
         $connection = mysqli_connect($host, $user, $password, $database);
         mysqli_query($connection,$query);
+        $image = "";
+        if ($_POST["image_list"]!=""){
+            $image = explode(", ",$_POST["image_list"]);
+        }
+        if ($image){
+            $query = "UPDATE product_image SET product_id = $product_id";
+            for ($i=0; $i < 5; $i++) { 
+                if ($i<count($image)){
+                    $image_link = $image[$i];
+                    $query = $query .","."image_".($i+1)." ='$image_link'";
+                }
+            }
+            $query = $query."WHERE product_id = $product_id";
+            if (mysqli_num_rows(mysqli_query($connection,"SELECT * FROM product_image WHERE product_id = $product_id")))
+                mysqli_query($connection,$query);
+            else {
+                if ($image){
+                    $query = "INSERT INTO product_image (product_id,image_1,image_2,image_3,image_4,image_5) VALUES ($product_id ";
+                    for ($i=0; $i < 5; $i++) { 
+                        if ($i<count($image)){
+                            $image_link = $image[$i];
+                            $query = $query .","." '$image_link'";
+                        } else {
+                            $query = $query.",''";
+                        }
+                    }
+                    $query = $query.")";
+                    mysqli_query($connection,$query);
+                }
+            }
+        }
         mysqli_close($connection);
         header("Location: products_list.html");
         exit;
@@ -32,6 +68,7 @@
         header("Location: page_not_found.html");
         exit;
     }
+    
     $host = "localhost"; 
     $user = "root";
     $password = ""; 
@@ -40,7 +77,6 @@
     $data = mysqli_query($connection,"SELECT * FROM product_info WHERE product_id = $id");
     $data = mysqli_fetch_assoc($data);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,6 +180,31 @@
                     <button type="button" class="btn btn-primary" id="add_image_button">Thêm Ảnh</button>
                 </div>
             </div>
+            <div class="my-1 row" id="show-images">
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image1">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(0)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image2">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(1)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image3">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(2)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image4">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(3)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image5">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(4)">Xóa</button>
+                </div> 
+            </div>
+            <div>
+                <input type="hidden" name="image_list" id="image_list">
+            </div>
             <div class="row justify-content-end">
                 <button type="submit" class="btn btn-sm w-auto px-5 btn-success" id="submit" disabled>Xác nhận</button>
             </div>
@@ -154,6 +215,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
         let color_list = $("#color_list").val().split(", ");
+        let images_list = [<?php
+                $image = mysqli_query($connection,"SELECT image_1, image_2, image_3,image_4,image_5 FROM product_image WHERE product_id = $id");
+                if (mysqli_num_rows($image)){
+                    $image = mysqli_fetch_array($image);
+                    $count = 0;
+                    for ($i=0 ;$i < count($image)/2 ;$i++) {
+                        $value = $image[$i];
+                        if ($value){ 
+                            if ($count!=0) echo ',';
+                            echo "'$value'";
+                            $count+=1;
+                        }
+                    }
+                }
+            ?>];
+        
+        function showImage(){
+            if (images_list.length == 5) $("#add_image_button").attr("disabled",true);
+                else $("#add_image_button").attr("disabled",false);
+            let image = $(".img-thumbnail");
+            let deleteImage = $(".deleteImage");
+            for (let i = 0; i < 5; i++) {
+                if (i<images_list.length){
+                    image[i].setAttribute("src",images_list[i]);
+                    deleteImage[i].hidden = false;
+                } else {
+                    image[i].setAttribute("src","https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg");
+                    deleteImage[i].hidden = true;
+                }
+            }
+            $("#image_list").val(images_list.join(", "));
+        }
+        function deleteImage(x){
+            images_list.splice(x,1);
+            showImage();
+        }
         $("form").submit(function(){
             $("#color_list").attr("disabled",false);
             $("#product_id").attr("disabled",false);
@@ -161,6 +258,7 @@
         function submit_valid(){
             let checked = $("input[type=checkbox]:checked").length;
             $("#submit").attr("disabled", (!checked));
+
         }
         function showHeader(){
                 $.ajax(
@@ -194,9 +292,16 @@
             $("#color_name").val("");
             $("#color_list").html(color_list.join(", "));
         });
+        $("#add_image_button").click(function(){
+            let image_link = $("#link").val();
+            if (image_link) images_list.push(image_link);
+            showImage();
+            $("#link").val("");
+        });
         $("#product_id").change(submit_valid);
         $("#check-area").click(submit_valid);
         submit_valid();
+        showImage()
     </script>
 </body>
 </html>

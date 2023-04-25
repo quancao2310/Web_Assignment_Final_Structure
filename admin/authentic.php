@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        header("Location: /btl/page_not_found.html");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +25,11 @@
         $host = "localhost"; 
         $user = "root";
         $password = ""; 
-        $database = "btl";
+        $database = "manager";
         $connection = mysqli_connect($host, $user, $password, $database);
         $username = htmlspecialchars($_POST["username"]);
         $password = htmlspecialchars($_POST["password"]);
-        $account = mysqli_query($connection,"SELECT * FROM account WHERE username = '$username'");
+        $account = mysqli_query($connection,"SELECT * FROM account_info WHERE username = '$username'");
         $account = mysqli_fetch_assoc($account);
         if ($account){
             if ($account["role"]!="ADMIN") noPermission($id);
@@ -33,14 +40,14 @@
                     exit;
                 }
                 if ($for=="unban"){
-                    mysqli_query($connection,"UPDATE account SET role = 'GUESS', more = '' WHERE id = $id");
+                    mysqli_query($connection,"UPDATE account_info SET role = 'GUEST', more = '' WHERE user_id = $id");
                     mysqli_close($connection);
                     header("Location: account_detail.php?id=$id");
                     exit;
                 } 
                 if ($for=="del"){
-                    $username = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM account WHERE id = $id"))["username"];
-                    mysqli_query($connection,"DELETE FROM account WHERE id = $id");
+                    $username = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM account_info WHERE user_id = $id"))["username"];
+                    mysqli_query($connection,"DELETE FROM account_info WHERE user_id = $id");
                     mysqli_query($connection,"DELETE FROM feedback WHERE username = '$username'");
                     mysqli_close($connection);
                     header("Location: account_list.html");

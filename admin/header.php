@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        http_response_code(404);
+        exit;
+    }
+?>
 <nav class="navbar bg-light navbar-light navbar-expand-sm mb-5 fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="../index.html">

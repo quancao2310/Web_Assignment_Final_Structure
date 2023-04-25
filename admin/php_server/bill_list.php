@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['role']) || $_SESSION['role']!="ADMIN") {
+        http_response_code(404);
+        exit;
+    }
     $page = 1;
     if (isset($_POST["page"])){
         $page = $_POST["page"];
@@ -8,7 +13,7 @@
     $password = ""; 
     $database = "manager";
     $connection = mysqli_connect($host, $user, $password, $database);
-    $data = mysqli_query($connection,"SELECT * FROM feedback");
+    $data = mysqli_query($connection,"SELECT * FROM bill_info");
     $max_page = intdiv(mysqli_num_rows($data)-1,10)+1;
     if ($page > $max_page) $page=1;
     mysqli_data_seek($data,($page-1)*10);
@@ -18,12 +23,14 @@
 <table class="table table-info table-striped table-hover table-sm">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Tên sản phẩm</th>
-            <th>Người đánh giá</th>
-            <th>Đánh giá</th>
-            <th>Nội dung</th>
-            <th>#</th>
+            <th>Mã hóa đơn</th>
+            <th>Người đặt</th>
+            <th>Mã sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Size</th>
+            <th>Màu sắc</th>
+            <th>Thành tiền</th>
+            <th>Hành động</th>
         </tr>
     </thead>
     <tbody>
@@ -33,14 +40,21 @@
             if ($row){
                 ?>
                 <tr>
-                    <td> <?php echo $row["feedback_id"]; ?> </td>
-                    <td> <a href="../productDetail/productDetail.php?product_id=<?php echo $row["product_id"]; ?>"><?php echo $row["product_name"]; ?></a> </td>
-                    <td> <?php echo $row["username"]; ?> </td>
-                    <td> <?php star($row["stars"]); ?> </td>
-                    <td class="w-25"> <?php echo substr($row["detail"],0,100)."..."; ?> </td>
+                    <td> <?php echo $row["bill_id"]; ?> </td>
+                    <td> <?php 
+                    $user_id = $row["user_id"];
+                    $user = mysqli_query($connection,"SELECT * FROM account_info WHERE user_id = $user_id");
+                    $user = mysqli_fetch_assoc($user);
+                    echo $user["username"]; 
+                    ?> </td>
+                    <td> <?php echo $row["product_id"]; ?> </td>
+                    <td> <?php $row["chosen_quantity"]; ?> </td>
+                    <td> <?php echo $row["chosen_size"]; ?> </td>
+                    <td> <?php echo $row["chosen_color"]; ?> </td>
+                    <td> <?php echo $row["price"]; ?> </td>
                     <td> 
-                        <button type="button" class="btn btn-sm btn-success" onclick="location.href='edit_product.php?id=<?php echo $row["product_id"]; ?>'">Chi tiết</button>
-                        <button type="button" class="btn btn-sm btn-warning" onclick="location.href='delete_product.php?id=<?php echo $row['product_id'];?>'">Xóa</button>
+                        <button type="button" class="btn btn-sm btn-success">Duyệt đơn</button>
+                        <button type="button" class="btn btn-sm btn-warning">Hủy đơn</button>
                     </td>
                 </tr>
                 <?php

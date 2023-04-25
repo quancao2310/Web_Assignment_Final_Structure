@@ -22,8 +22,8 @@
                     <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
                 </ol>
                 </nav>
-        <form class="row" action="add_product.php" method="post" id="add_form">
-            <div class="col-md-6 border-end border-secondary border-2 pe-2">
+        <form class="row" action="php_server/add_product.php" method="post" id="add_form">
+            <div class="col-md-6 pe-2">
             <div class="my-1 d-flex">
                 <label for="product_id" class="form-label me-2">ID sản phẩm:</label>
                 <input type="number" class="form-control w-25" id="product_id" name="product_id" aria-describedby="validate_id" placeholder="Nhập ID" required>
@@ -101,6 +101,31 @@
                     <button type="button" class="btn btn-primary" id="add_image_button">Thêm Ảnh</button>
                 </div>
             </div>
+            <div class="my-1 row" id="show-images">
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image1">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(0)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image2">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(1)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image3">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(2)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image4">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(3)">Xóa</button>
+                </div>
+                <div class="col-md-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg" class="w-100 img-thumbnail" alt="image5">
+                    <button type="button" class="btn btn-sm btn-secondary deleteImage" onclick="deleteImage(4)">Xóa</button>
+                </div> 
+            </div>
+            <div>
+                <input type="hidden" name="image_list" id="image_list">
+            </div>
             <div class="row justify-content-end">
                 <button type="submit" class="btn btn-sm w-auto px-5 btn-success" id="submit" disabled>Thêm</button>
             </div>
@@ -111,6 +136,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
         let color_list = [];
+        let image_list = [];
+        function showImage(){
+            if (image_list.length == 5) $("#add_image_button").attr("disabled",true);
+                else $("#add_image_button").attr("disabled",false);
+            let image = $(".img-thumbnail");
+            let deleteImage = $(".deleteImage");
+            for (let i = 0; i < 5; i++) {
+                if (i<image_list.length){
+                    image[i].setAttribute("src",image_list[i]);
+                    deleteImage[i].hidden = false;
+                } else {
+                    image[i].setAttribute("src","https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg");
+                    deleteImage[i].hidden = true;
+                }
+            }
+            $("#image_list").val(image_list.join(", "));
+        }
+        function deleteImage(x){
+            image_list.splice(x,1);
+            showImage();
+        }
         $("form").submit(function(){
             $("#color_list").attr("disabled",false);
         });
@@ -134,6 +180,7 @@
                         },
                     error: function(xhr, status, error) {
                         console.log('Error: ' + error);
+                        location.href = "/btl/page_not_found.html"
                         }
                     
                 }
@@ -153,6 +200,12 @@
                     }
                 )
             }
+        $("#add_image_button").click(function(){
+            let image_link = $("#link").val();
+            if (image_link) image_list.push(image_link);
+            showImage();
+            $("#link").val("");
+        });
         showHeader();
         $("#add_color_button").click(function(){
             let color = $("#color_name").val();
@@ -173,6 +226,7 @@
         });
         $("#product_id").change(submit_valid);
         $("#check-area").click(submit_valid);
+        showImage();
     </script>
 </body>
 </html>

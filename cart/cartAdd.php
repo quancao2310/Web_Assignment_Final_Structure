@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../utilities/connect.php";
+include "../modules/connect.php";
 function test_input($data)
 {
     $data = trim($data);
@@ -8,9 +8,9 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-if (!isset($_SESSION["login"]) && !$_SESSION["login"]) {
+if (!isset($_SESSION["user_id"])) {
     mysqli_close($connection);
-    http_response_code(400);
+    http_response_code(403);
     exit;
 } else {
     $price = 0;
@@ -21,17 +21,17 @@ if (!isset($_SESSION["login"]) && !$_SESSION["login"]) {
 
     if (empty($prod_id) || !is_numeric($prod_id) || is_float($prod_id) || (int)$prod_id <= 0) {
         mysqli_close($connection);
-        http_response_code(400);
+        http_response_code(404);
         exit;
     }
     if (empty($quantity) || !is_numeric($quantity) || is_float($quantity) || (int)$quantity <= 0) {
         mysqli_close($connection);
-        http_response_code(400);
+        http_response_code(404);
         exit;
     }
     if (empty($size) || $size == "" || empty($color) || $color == "") {
         mysqli_close($connection);
-        http_response_code(400);
+        http_response_code(404);
         exit;
     }
 

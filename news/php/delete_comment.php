@@ -1,9 +1,5 @@
 <?php
 session_start();
-if ($_SESSION['role'] != 'ADMIN') {
-  header('Location: news.html');
-  die();
-}
 
 $db_connect = mysqli_connect('localhost', 'root', '', 'manager');
 if (!$db_connect) {

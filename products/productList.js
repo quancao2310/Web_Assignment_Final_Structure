@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    $.post("../utilities/header.php", function(data) {
+    $.post("../modules/header.php", function(data) {
         $("body").prepend(data)
     })
-    $.post("../utilities/footer.php", function(data) {
+    $.post("../modules/footer.php", function(data) {
         $("body").append(data)
     })
     let typeGroup = Object.create(null)
@@ -40,7 +40,7 @@ $(document).ready(function() {
                 slideStr += '<img src="' + product[4] + '" class="card-img-top p-2" alt="Image">'
                 slideStr += '<div class="card-body text-center"><p class="card-text text-truncate">' + product[2] + '</p>'
                 slideStr += '<p class="card-text">Giá: ' + product[3] + '</p>'
-                slideStr += '<form method="post" action="../productDetail/productDetail.php">'
+                slideStr += '<form method="post" action="./productDetail/productDetail.php">'
                 slideStr += '<button type="submit" class="btn btn-secondary" name="product_id" value="' + product[0] + '">'
                 slideStr += 'Chi tiết</button></form></div></div></div>'
                 itemNum++

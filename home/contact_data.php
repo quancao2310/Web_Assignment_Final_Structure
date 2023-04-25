@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb" class="bg-light p-2 py-lg-3">
   <ol class="breadcrumb m-0">
-    <li class="breadcrumb-item"><a href="index.html" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+    <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page" class="text-secondary">Thông tin liên hệ</li>
   </ol>
 </nav>
@@ -29,7 +29,7 @@
     <div class="col mb-3">
       <div class="card border-0 text-center">
         <div class="img-container" style="height: 200px">
-          <img src="https://picsum.photos/200" alt="Employee" class="img-fluid" style="border-radius: 50%; height: 100%">
+          <img src="../images/standard_avt.jpg" alt="Employee" class="img-fluid" style="border-radius: 50%; height: 100%">
         </div>
         <div class="card-body pt-2">
           <h5 class="card-title"><?php echo $membersName[$i]; ?></h5>
