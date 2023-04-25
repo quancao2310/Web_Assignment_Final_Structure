@@ -16,7 +16,7 @@
     $data = mysqli_query($connection,"SELECT * FROM account_info WHERE user_id = $id");
     $data = mysqli_fetch_assoc($data);
     $username = $data["username"];
-    $feedback = mysqli_query($connection,"SELECT * FROM feedback WHERE username = '$username'");
+    $feedback = mysqli_query($connection,"SELECT * FROM news_comment WHERE user_id = '$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,10 +104,9 @@
                     <?php 
                     $active = $data = mysqli_fetch_assoc($feedback);
                     while ($active){
-                        $productid = $active["product_id"];
-                        $product = mysqli_fetch_assoc(mysqli_query($connection,"SELECT * FROM product_info WHERE product_id = $productid"));
+                        $news_id = $active["news_id"];
                     ?>
-                    <li class="list-group-item">Đánh giá <?php star($active["stars"]);?> cho <a href="/btl/products/productDetail/productDetail.php?product_id=<?php echo $product["product_id"]; ?>"> <?php echo $product["product_name"];?></a></li>
+                    <li class="list-group-item"> Phản hồi cho <a href="/btl/news/news_post.html?id=<?php echo $news_id; ?>"> Bài viết <?php echo $news_id;?></a></li>
                     <?php 
                         $active = $data = mysqli_fetch_assoc($feedback);
                     } 
@@ -142,17 +141,4 @@
 </html>
 <?php 
     mysqli_close($connection);
-?>
-<?php 
-    function star($num){
-        echo '<span class="text-warning">';
-        for ($i=0;$i<5;$i++){
-            if ($i < $num){
-                echo '<i class="bi bi-star-fill"></i>';
-            } else {
-                echo '<i class="bi bi-star"></i>';
-            }
-        }
-        echo "</span>";
-    }
 ?>

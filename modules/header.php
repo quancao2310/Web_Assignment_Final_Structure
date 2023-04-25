@@ -29,7 +29,7 @@ else {
           </a>
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start text-small">
             <li>
-              <a href="/btl/account/page/user_page.php" class="dropdown-item">Thông tin cá nhân</a>
+              <a href="/btl/account/user_page.php" class="dropdown-item">Thông tin cá nhân</a>
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
@@ -79,10 +79,10 @@ else {
         ?>
         <ul class="navbar-nav fw-semibold me-auto d-lg-none">
           <li class="nav-item">
-            <a href="/btl/account/page/login.php" class="nav-link text-black">Đăng nhập</a>
+            <a href="/btl/account/login.php" class="nav-link text-black">Đăng nhập</a>
           </li>
           <li class="nav-item">
-            <a href="/btl/account/page/register.php" class="nav-link text-black">Đăng ký</a>
+            <a href="/btl/account/register.php" class="nav-link text-black">Đăng ký</a>
           </li>
         </ul>
         <?php
@@ -101,10 +101,10 @@ else {
         ?>
         <ul class="navbar-nav fw-semibold me-auto me-lg-0 d-none d-lg-flex">
           <li class="nav-item me-3">
-            <a href="/btl/account/page/login.php" type="button" class="btn btn-primary text-white">Đăng nhập</a>
+            <a href="/btl/account/login.php" type="button" class="btn btn-primary text-white">Đăng nhập</a>
           </li>
           <li class="nav-item">
-            <a href="/btl/account/page/register.php" type="button" class="btn btn-primary text-white">Đăng ký</a>
+            <a href="/btl/account/register.php" type="button" class="btn btn-primary text-white">Đăng ký</a>
           </li>
         </ul>
         <?php
