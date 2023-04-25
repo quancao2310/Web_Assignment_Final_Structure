@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  include '../include/config.php';
+  include 'include/config.php';
   if (isset($_POST['change'])) {
     
     $name = $_POST['name'];

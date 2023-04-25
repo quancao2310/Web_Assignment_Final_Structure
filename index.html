@@ -22,30 +22,6 @@
         <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mb-3">
           Trải nghiệm những bộ trang phục hiện đại
         </div>
-        <div class="col-12 mb-5">
-          <form class="row my-4" id="main-search" role="search">
-            <div class="col-10 offset-1 col-lg-8 offset-lg-2 d-flex mb-3" id="main-search-bar">
-              <input class="form-control" name="search" id="search2" type="search" placeholder="Hãy bắt đầu với một mặt hàng" aria-label="Search">
-              <button type="submit" class="btn d-flex justify-content-center align-items-center search-icon" title="Search button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-              </button>
-            </div>
-            <div class="col-12 d-flex justify-content-center flex-wrap gap-2" id="main-search-button">
-              <button type="button" class="btn btn-outline-secondary">áo thun</button>
-              <button type="button" class="btn btn-outline-secondary">polo</button>
-              <button type="button" class="btn btn-outline-secondary">tee</button>
-              <button type="button" class="btn btn-outline-secondary">áo khoác</button>
-              <button type="button" class="btn btn-outline-secondary">áo sơ mi</button>
-              <button type="button" class="btn btn-outline-secondary">quần đùi</button>
-              <button type="button" class="btn btn-outline-secondary">jeans</button>
-              <button type="button" class="btn btn-outline-secondary">kaki</button>
-              <button type="button" class="btn btn-outline-secondary">backpack</button>
-              <button type="button" class="btn btn-outline-secondary">túi</button>
-            </div>
-          </form>
-        </div>
         <div class="col-12 text-uppercase text-center text-dark fw-bold fs-1 mt-5 mb-3">
           Bán chạy nhất
         </div>
@@ -150,13 +126,17 @@
             "<div class='col-12 col-sm-6 col-lg-4 mb-3'> \
               <div class='card text-center'> \
                 <div class='img-container'> \
-                  <a href='#'> \
-                    <img src='" + item['image_1'] + "' alt='" + item['product_name'] + "' class='card-img-top'> \
-                  </a> \
+                  <form method='post' action='products/productDetail/productDetail.php'> \
+                    <button type='submit' class='btn' name='product_id' value='" + item['product_id'] + "'> \
+                      <img src='" + item['image_1'] + "' alt='" + item['product_name'] + "' class='card-img-top'> \
+                    </button> \
+                  </form> \
                 </div> \
                 <div class='card-body pt-2'> \
                   <h5 class='card-title'> \
-                    <a href='#' class='text-reset text-decoration-none fw-bold'>" + item['product_name'] + "</a> \
+                    <form method='post' action='products/productDetail/productDetail.php'> \
+                      <button type='submit' class='btn text-reset text-decoration-none fw-bold' name='product_id' value='" + item['product_id'] + "'>" + item['product_name'] + "</button> \
+                    </form> \
                   </h5> \
                   <p class='card-text mb-2'>" + item['product_price'] + " &#8363;</p> \
                 </div> \

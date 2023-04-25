@@ -57,7 +57,6 @@ body {
     /* Styles for phones */
     .login-box {
         width: 350px;
-        height: max-content;
     }
     
     .register-box {
@@ -67,7 +66,6 @@ body {
     
     .info-box {
         width: 350px;
-        height: max-content;
     }
 }
 
@@ -76,17 +74,14 @@ body {
     /* Styles for tablets */
     .login-box {
         width: 400px;
-        height: 430px;
     }
     
     .register-box {
         width: 400px;
-        height: 450px;
     }
     
     .info-box {
         width: 400px;
-        height: 450px;
     }
 }
 
@@ -95,17 +90,14 @@ body {
     /* Styles for laptops */
     .login-box {
         width: 450px;
-        height: 600px;
     }
     
     .register-box {
         width: 450px;
-        height: 600px;
     }
     
     .info-box {
         width: 450px;
-        height: 600px;
     }
 }
 
@@ -114,17 +106,14 @@ body {
     /* Styles for computers */
     .login-box {
         width: 450px;
-        height: 500px;
     }
     
     .register-box {
         width: 450px;
-        height: 600px;
     }
     
     .info-box {
         width: 450px;
-        height: 600px;
     }
 }
 
@@ -133,17 +122,14 @@ body {
     /* Styles for TV */
     .login-box {
         width: 400px;
-        height: 430px;
     }
     
     .register-box {
         width: 430px;
-        height: 600px;
     }
     
     .info-box {
         width: 400px;
-        height: 430px;
     }
 }
 
