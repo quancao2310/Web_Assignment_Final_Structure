@@ -25,12 +25,12 @@
                 mysqli_query($connection, "UPDATE product_info set quantity = quantity + $quantity WHERE product_id = $product_id");
                 $row = mysqli_fetch_assoc($data);
             }
-            mysqli_query($connection,"DELETE FROM bill_info WHERE bill_id = $bill_id");
+            mysqli_query($connection,"UPDATE payment_info SET status = 'Giao dịch thất bại' WHERE bill_id = $bill_id");
         } else if ($query_type == "confirm"){
-            mysqli_query($connection,"DELETE FROM bill_info WHERE bill_id = $bill_id");
+            mysqli_query($connection,"UPDATE payment_info SET status = 'Giao dịch thành công' WHERE bill_id = $bill_id");
         }
     }
-    $data = mysqli_query($connection,"SELECT bill_id, user_id, GROUP_CONCAT(DISTINCT product_id) as product_ids, SUM(price) as prices FROM bill_info GROUP BY bill_id, user_id ORDER BY bill_id;");
+    $data = mysqli_query($connection,"SELECT bill_id, user_id, GROUP_CONCAT(DISTINCT product_id) as product_ids, SUM(price) as prices FROM bill_info WHERE bill_id IN (SELECT bill_id FROM payment_info WHERE status = 'Đang xử lí') GROUP BY bill_id, user_id ORDER BY bill_id;");
     $max_page = intdiv(mysqli_num_rows($data)-1,10)+1;
     if ($page > $max_page) $page=1;
     mysqli_data_seek($data,($page-1)*10);
@@ -54,7 +54,6 @@
         <?php
         for($i=0;$i<10;$i++){
             $row = mysqli_fetch_assoc($data);
-            
             if ($row){
                 $bill_id = $row["bill_id"];
                 ?>
