@@ -55,7 +55,11 @@
               <a href='bill_detail.html?id=" + bill['bill_id'] + "' class='text-decoration-none' style='color: initial;'> \
                 <div class='row my-3 fs-5'> \
                   <div class='col-sm-6 fw-bold'>Đơn hàng " + bill['bill_id'] + "</div> \
-                  <div class='col-sm-6 text-sm-end text-warning'>" + bill['status'] + "</div> \
+                  <div class='col-sm-6 text-sm-end "
+            if (bill['status'] == "Giao dịch thất bại") bill_block += "text-danger";
+            else if (bill['status'] == "Giao dịch thành công") bill_block += "text-success";
+            else bill_block += "text-warning";
+                  bill_block += "'>" + bill['status'] + "</div> \
                 </div> \
                 <div class='border-top'> \
                   <table class='table table-borderless'> \
