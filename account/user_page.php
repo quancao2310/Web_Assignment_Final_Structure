@@ -49,10 +49,14 @@ if (isset($_SESSION["user_id"])) {
       </a>
     </div>
     <div id="body" class="row">
-      <div class="col-3">
+      <div class="col-4 col-lg-3">
         <div class="card" style="background-color: #fff;">
-          <img src="<?php echo $data['avatar']; ?>" alt="avatar" class="card-img-top rounded-circle ratio ratio-1x1">
-          <a class="change-img" href="change_ava.php" role="button"><ion-icon name="create-outline"></ion-icon></a>
+          <div class="position-relative">
+            <div style="width: 70%; margin: auto;">
+              <img src="<?php echo $data['avatar']; ?>" alt="avatar" class="card-img-top rounded-circle ratio ratio-1x1">
+            </div>
+            <a class="change-img position-absolute top-0" href="change_ava.php" role="button" style="right: 0"><ion-icon name="create-outline"></ion-icon></a>
+          </div>
           <div class="card-body">
             <h1><?php echo $data["name"]; ?></h1>
             <h3><?php echo $data["username"]; ?></h3>
@@ -66,7 +70,7 @@ if (isset($_SESSION["user_id"])) {
           </div>
         </div>
       </div>
-      <div class="col-9">
+      <div class="col-8 col-lg-9">
         <div class="card w-100 row">
           <div class="card-body">
             <h5 class="card-title">Chi tiết người dùng:</h5>

@@ -38,7 +38,7 @@
             }
           }
         ?>
-        <form action="../include/register.inc.php" method="post">
+        <form action="include/register.inc.php" method="post">
           <div class="input-box">
             <span class="icon">
               <ion-icon name="person"></ion-icon>

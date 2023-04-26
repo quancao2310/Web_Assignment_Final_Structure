@@ -15,15 +15,15 @@ if (!isset($_GET["product_id"]) && !isset($_POST["product_id"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="/btl/modules/header-footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Chi tiết sản phẩm</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/btl/">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="/btl/products/productList.php">Sản phẩm</a></li>
+                <li class="breadcrumb-item"><a href="/btl/" class="text-dark fw-bold text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/btl/products/productList.php" class="text-dark fw-bold text-decoration-none">Sản phẩm</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
             </ol>
         </nav>
